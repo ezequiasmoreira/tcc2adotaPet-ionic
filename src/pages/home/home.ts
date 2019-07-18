@@ -21,7 +21,7 @@ export class HomePage {
     this.menu.swipeEnable(true);
   }
   login() {
-    this.navCtrl.setRoot('AnimaisPage');
+    this.navCtrl.setRoot('RacasPage');
   
   }
 
