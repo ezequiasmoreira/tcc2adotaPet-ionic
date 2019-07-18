@@ -12,3 +12,17 @@
   <p>Pagina de racas</p>
 </ion-content>
 
+<ion-content padding>
+  <ion-fab top right edge>
+    <button navPush="CartPage" ion-fab mini><ion-icon name="cart"></ion-icon></button>
+  </ion-fab>
+  <ion-list>
+    <button ion-item *ngFor="let item of items" >
+      <ion-thumbnail item-start>
+        <img src="{{ImageUrl}}/raca{{item.id}}.jpg">
+      </ion-thumbnail>
+      <h2> {{ item.descricao }} </h2>
+    </button>
+  </ion-list>
+</ion-content>
+
