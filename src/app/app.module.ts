@@ -8,6 +8,7 @@ import { MyApp } from './app.component';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { RacaService } from '../services/domain/raca.service';
+import { ErrorInterceptorProvider } from '../interceptors/ErrorInterceptor';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { RacaService } from '../services/domain/raca.service';
     StatusBar,
     SplashScreen,
     RacaService,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    ErrorInterceptorProvider
   ]
 })
 export class AppModule {}
