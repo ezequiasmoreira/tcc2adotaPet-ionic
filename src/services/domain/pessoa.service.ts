@@ -20,4 +20,15 @@ export class PessoaService {
         let url = `${API_CONFIG.imageBaseUrl}/cp${id}.jpg`
         return this.http.get(url, {responseType : 'blob'});
     }
+    insert(obj : PessoaDTO) {
+        return this.http.post(
+            `${API_CONFIG.baseUrl}/pessoas`, 
+            obj,
+            { 
+                observe: 'response', 
+                responseType: 'text'
+            }
+        ); 
+    }
+
 }
