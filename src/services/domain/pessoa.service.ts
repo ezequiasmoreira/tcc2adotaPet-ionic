@@ -13,12 +13,7 @@ export class PessoaService {
 
     findByEmail(email: string) : Observable<PessoaDTO> {
 
-        let token = this.storage.getLocalUser().token;
-        let authHeader = new HttpHeaders({'Authorization': 'Bearer ' + token});
-
-        return this.http.get<PessoaDTO>(
-            `${API_CONFIG.baseUrl}/pessoas/email?value=${email}`,
-            {'headers': authHeader});
+        return this.http.get<PessoaDTO>(`${API_CONFIG.baseUrl}/pessoas/email?value=${email}`);
     }
 
     getImageFromBucket(id : string) : Observable<any> {
