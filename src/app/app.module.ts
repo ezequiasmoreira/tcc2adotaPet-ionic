@@ -11,6 +11,7 @@ import { RacaService } from '../services/domain/raca.service';
 import { ErrorInterceptorProvider } from '../interceptors/ErrorInterceptor';
 import { AuthService } from '../services/auth.service';
 import { StorageService } from '../services/storage.service';
+import { PessoaService } from '../services/domain/pessoa.service';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { StorageService } from '../services/storage.service';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ErrorInterceptorProvider,
     AuthService,
-    StorageService
+    StorageService,
+    PessoaService
   ]
 })
 export class AppModule {}
