@@ -13,4 +13,8 @@ export class AnimalService {
     findAll() : Observable<AnimalDTO[]>  {
         return this.http.get<AnimalDTO[]>(`${API_CONFIG.baseUrl}/animais`);
     }
+
+    findByRaca(raca_id : string) {
+        return this.http.get(`${API_CONFIG.baseUrl}/animais/raca/${raca_id}`);
+    }
 }

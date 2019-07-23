@@ -33,5 +33,8 @@ export class RacasPage {
       error => { });
     //console.log('ionViewDidLoad RacasPage');
   }
+  showAnimais(raca_id : string) {
+    this.navCtrl.push('AnimaisPage',{raca_id : raca_id});    
+  }
 
 }

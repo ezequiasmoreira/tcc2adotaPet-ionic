@@ -7,7 +7,8 @@ export interface AnimalDTO {
     vacinado : string;
     vermifugado : string;
     castrado : string;
-    ongId :	string;
+    ongId? :	string;
     status : string;
-    raca :string;
+    racaId :string;
+    imageUrl? : string;
 }

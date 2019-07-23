@@ -7,7 +7,14 @@
   </ion-navbar>
 </ion-header>
 
-
 <ion-content padding>
-  <p>Pagina de animais</p>
+  <ion-list>
+    <button ion-item *ngFor="let item of items">
+      <ion-thumbnail item-start>
+        <img [src]="item.imageUrl || 'assets/imgs/no-image.jpg'">
+      </ion-thumbnail>
+      <h2>{{item.nome}}</h2>
+      <p>{{item.nome}}</p>
+    </button>
+  </ion-list>
 </ion-content>

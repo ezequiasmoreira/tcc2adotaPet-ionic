@@ -17,7 +17,7 @@
     <button navPush="CartPage" ion-fab mini><ion-icon name="cart"></ion-icon></button>
   </ion-fab>
   <ion-list>
-    <button ion-item *ngFor="let item of items" >
+    <button ion-item *ngFor="let item of items" (click)="showAnimais(item.id)" >
       <ion-thumbnail item-start>
         <img src="{{ImageUrl}}/raca{{item.id}}.jpg">
       </ion-thumbnail>

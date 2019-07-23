@@ -1,12 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the AnimaisPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { AnimalDTO } from '../../models/animal.dto';
+import { AnimalService } from '../../services/domain/animal.service';
 
 @IonicPage()
 @Component({
@@ -15,11 +10,22 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class AnimaisPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  items : AnimalDTO[];
+
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams,
+    public animalService: AnimalService
+    ) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad AnimaisPage');
+    let raca_id = this.navParams.get('raca_id');
+    this.animalService.findByRaca(raca_id)
+    .subscribe(response => {
+      this.items = response['content'];
+    },
+    error => {});
   }
 
 }
