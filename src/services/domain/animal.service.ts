@@ -17,4 +17,8 @@ export class AnimalService {
     findByRaca(raca_id : string) {
         return this.http.get(`${API_CONFIG.baseUrl}/animais/raca/${raca_id}`);
     }
+    getSmallImageFromBucket(id : string) : Observable<any> {
+        let url = `${API_CONFIG.imageBaseUrl}/animais/an${id}.jpg`
+        return this.http.get(url, {responseType : 'blob'});
+      } 
 }

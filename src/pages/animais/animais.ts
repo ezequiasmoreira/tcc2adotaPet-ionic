@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AnimalDTO } from '../../models/animal.dto';
 import { AnimalService } from '../../services/domain/animal.service';
+import { API_CONFIG } from '../../config/api.config';
 
 @IonicPage()
 @Component({
@@ -24,8 +25,19 @@ export class AnimaisPage {
     this.animalService.findByRaca(raca_id)
     .subscribe(response => {
       this.items = response['content'];
+      this.loadImageUrls();
     },
     error => {});
   }
+  loadImageUrls() {
+    for (var i=0; i<this.items.length; i++) {
+      let item = this.items[i];
+      this.animalService.getSmallImageFromBucket(item.id)
+        .subscribe(response => {
+          item.imageUrl = `${API_CONFIG.imageBaseUrl}/animais/an${item.id}.jpg`;
+        },
+        error => {});
+    }
+  }  
 
 }
