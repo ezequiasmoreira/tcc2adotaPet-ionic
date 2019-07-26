@@ -29,6 +29,7 @@ export class AnimaisPage {
     },
     error => {});
   }
+
   loadImageUrls() {
     for (var i=0; i<this.items.length; i++) {
       let item = this.items[i];
@@ -37,7 +38,11 @@ export class AnimaisPage {
           item.imageUrl = `${API_CONFIG.imageBaseUrl}/animais/an${item.id}.jpg`;
         },
         error => {});
-    }
+    }    
   }  
+
+  showDetail(animal_id : string) {
+    this.navCtrl.push('AnimalDetailPage', {animal_id: animal_id});
+  }
 
 }

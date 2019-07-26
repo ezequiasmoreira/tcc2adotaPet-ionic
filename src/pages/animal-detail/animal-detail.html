@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Detalhes</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card>
+    <img [src]="item?.imageUrl || 'assets/imgs/animais/an1.jpg'"/>
+    <ion-card-content>
+      <ion-card-title>
+        {{item?.nome}}
+      </ion-card-title>
+      <p>
+      Cód: {{item?.codigo}}
+      </p>
+      <p>
+      Genero: {{item?.genero ==1 ? "Macho":"Femea"}}
+      </p>
+      <p>
+      Raça: {{item?.raca.descricao}}
+      </p>
+      <p>
+      Ong: {{item?.ong.nome_Fantasia}}
+      </p>
+      <br>
+      <b>
+        Vacinas:
+      </b>
+      <span  m *ngFor="let vacina of item?.vacinas">
+        <p>Nome: {{vacina.vacina.nome}}</p>
+      </span>
+      <br>
+      <b>
+        Doenças:
+      </b>
+      <span  m *ngFor="let doenca of item?.doencas">
+        <p>Nome: {{doenca.descricao}}</p>
+      </span>
+      <br>
+    </ion-card-content>
+  </ion-card>
+
+  <button ion-button block outline >Adotar</button>
+</ion-content>
