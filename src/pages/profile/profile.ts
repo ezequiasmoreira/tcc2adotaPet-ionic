@@ -4,6 +4,8 @@ import { StorageService } from '../../services/storage.service';
 import { PessoaDTO } from '../../models/pessoa.dto';
 import { PessoaService } from '../../services/domain/pessoa.service';
 import { API_CONFIG } from '../../config/api.config';
+import { Camera,CameraOptions } from '@ionic-native/camera';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @IonicPage()
 @Component({
@@ -13,12 +15,17 @@ import { API_CONFIG } from '../../config/api.config';
 export class ProfilePage {
 
   pessoa: PessoaDTO;
+  picture: string;
+  profileImage;
+  cameraOn: boolean = false;
 
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
     public storage: StorageService,
-    public pessoaService: PessoaService) {
+    public pessoaService: PessoaService,
+    public camera: Camera,
+    public sanitizer: DomSanitizer) {
   }
 
   ionViewDidLoad() {
@@ -44,5 +51,43 @@ export class ProfilePage {
       this.pessoa.imageUrl = `${API_CONFIG.imageBaseUrl}/cp${this.pessoa.id}.jpg`;
     },
     error => {});
+  }
+  getCameraPicture() {
+
+    this.cameraOn = true;
+
+    const options: CameraOptions = {
+      quality: 100,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.PNG,
+      mediaType: this.camera.MediaType.PICTURE
+    }
+    
+    this.camera.getPicture(options).then((imageData) => {
+     this.picture = 'data:image/png;base64,' + imageData;
+     this.cameraOn = false;
+    }, (err) => {
+      this.cameraOn = false;
+    });
+  }
+
+  getGalleryPicture() {
+
+    this.cameraOn = true;
+
+    const options: CameraOptions = {
+      quality: 100,
+      sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.PNG,
+      mediaType: this.camera.MediaType.PICTURE
+    }
+    
+    this.camera.getPicture(options).then((imageData) => {
+     this.picture = 'data:image/png;base64,' + imageData;
+     this.cameraOn = false;
+    }, (err) => {
+      this.cameraOn = false;
+    });
   }
 }
