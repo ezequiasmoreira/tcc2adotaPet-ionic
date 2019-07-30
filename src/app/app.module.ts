@@ -14,6 +14,7 @@ import { StorageService } from '../services/storage.service';
 import { PessoaService } from '../services/domain/pessoa.service';
 import { AuthInterceptorProvider } from '../interceptors/auth-interceptor';
 import { AnimalService } from '../services/domain/animal.service';
+import { ImageUtilService } from '../services/image-util.service';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { AnimalService } from '../services/domain/animal.service';
     AuthService,
     StorageService,
     PessoaService,
-    AnimalService
+    AnimalService,
+    ImageUtilService
   ]
 })
 export class AppModule {}
