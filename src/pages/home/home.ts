@@ -24,17 +24,17 @@ export class HomePage {
   }
 
   ionViewWillEnter() {
-    this.menu.swipeEnable(false);
+    this.menu.swipeEnable(false);     
   }
     
   ionViewDidLeave() {
-    this.menu.swipeEnable(true);
+    this.menu.swipeEnable(true);    
   }
 
   ionViewDidEnter() {
     this.auth.refreshToken()
       .subscribe(response => {
-        this.auth.successfulLogin(response.headers.get('Authorization'));
+        this.auth.successfulLogin(response.headers.get('Authorization'));        
         this.navCtrl.setRoot('RacasPage');
       },
       error => {});  
@@ -44,6 +44,10 @@ export class HomePage {
     this.auth.authenticate(this.creds)
       .subscribe(response => {
         this.auth.successfulLogin(response.headers.get('Authorization'));
+        if (localStorage.getItem('controlador') == null){
+          localStorage.setItem('controlador','1');
+          window.location.reload(); 
+        }
         this.navCtrl.setRoot('RacasPage');
       },
       error => {});    

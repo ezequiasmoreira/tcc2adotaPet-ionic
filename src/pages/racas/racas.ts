@@ -27,7 +27,7 @@ export class RacasPage {
 
   ionViewDidLoad() {
     this.racaService.findAll()
-      .subscribe(response => {
+      .subscribe(response => {        
         this.items = response;
       },
       error => { });
