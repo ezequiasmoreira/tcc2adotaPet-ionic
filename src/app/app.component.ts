@@ -54,14 +54,14 @@ export class MyApp {
       this.pages = [
         { title: 'Perfil', component: 'ProfilePage' },
         { title: 'Raças', component: 'RacasPage' },
-        { title: 'Cadastros', component: 'RacasPage' },
+        { title: 'Cadastros', component: 'CadastrosPage' },
         { title: 'Sair', component: ''}
       ];    
     }else if(perfil == USUARIO_PERFIL.ADMIN){
       this.pages = [
         { title: 'Perfil', component: 'ProfilePage' },
         { title: 'Raças', component: 'RacasPage' },
-        { title: 'Cadastros', component: 'RacasPage' },
+        { title: 'Cadastros', component: 'CadastrosPage' },
         { title: 'Adoções', component: 'RacasPage' },
         { title: 'Sair', component: ''}
       ];    
@@ -69,7 +69,7 @@ export class MyApp {
       this.pages = [
         { title: 'Perfil', component: 'ProfilePage' },
         { title: 'Raças', component: 'RacasPage' },
-        { title: 'Cadastros', component: 'RacasPage' },
+        { title: 'Cadastros', component: 'CadastrosPage' },
         { title: 'Adoções', component: 'RacasPage' },
         { title: 'Root', component: 'RacasPage' },
         { title: 'Sair', component: ''}
