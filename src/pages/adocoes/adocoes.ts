@@ -1,12 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the AdocoesPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { AnimalService } from '../../services/domain/animal.service';
+import { AnimalDTO } from '../../models/animal.dto';
+import { API_CONFIG } from '../../config/api.config';
 
 @IonicPage()
 @Component({
@@ -15,11 +11,30 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class AdocoesPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+  animal: AnimalDTO;
 
+  constructor(
+    public navCtrl: NavController,
+     public navParams: NavParams,
+     public animalService: AnimalService) {
+  }
+  
   ionViewDidLoad() {
-    console.log('ionViewDidLoad AdocoesPage');
+    let animal_id = this.navParams.get('animal_id');
+    this.animalService.findById(animal_id)
+      .subscribe(response => {
+        this.animal = response;
+        console.log(this.animal)
+        this.getImageUrlIfExists();
+      },
+      error => {});
+  }
+  getImageUrlIfExists() {
+    this.animalService.getImageFromBucket(this.animal.id)
+      .subscribe(response => {
+        this.animal.imageUrl = `${API_CONFIG.imageBaseUrl}/animais/an${this.animal.id}.jpg`;
+      },
+      error => {});
   }
 
 }

@@ -9,7 +9,7 @@
 
 <ion-content padding>
   <ion-card>
-    <img [src]="item?.imageUrl || 'assets/imgs/animais/an1.jpg'"/>
+    <img [src]="item?.imageUrl || 'assets/imgs/animais/no-image.jpg'"/>
     <ion-card-content>
       <ion-card-title>
         {{item?.nome}}
@@ -44,5 +44,5 @@
     </ion-card-content>
   </ion-card>
 
-  <button ion-button block outline >Adotar</button>
+  <button ion-button block outline (click)="adotar(item.id)">Adotar</button>
 </ion-content>

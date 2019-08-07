@@ -36,5 +36,8 @@ export class AnimalDetailPage {
       },
       error => {});
   }
+  adotar(animal_id : string) {
+    this.navCtrl.push('AdocoesPage',{animal_id : animal_id});    
+  }
 }
 

@@ -1,18 +1,78 @@
-<!--
-  Generated template for the AdocoesPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-
   <ion-navbar>
-    <ion-title>adocoes</ion-title>
+    <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Adoção</ion-title>
   </ion-navbar>
-
 </ion-header>
 
-
 <ion-content padding>
+  <ion-card>
+    <img [src]="animal?.imageUrl || 'assets/imgs/animais/no-image.jpg'"/>    
+  </ion-card>
+  <ion-card-content>
+    <h2>Me comprometo a:</h2>
+    <ul>
+    <li><b>1.</b> Garantir o bem-estar deste animal, respeitando suas características e zelando pelas
+      suas necessidades psicológicas e físicas;  
+    </li>
+    <li><b>2.</b> Garantir sua saúde física fornecendo abrigo, alimento adequado, higiene, vacinas e
+      levando-o regularmente ao veterinário;
+    </li>
+    <li><b>3.</b> Garantir sua saúde psicológica respeitando suas características e fornecendo atenção,
+      carinho, e a possibilidade de interagir com outras pessoas ou animais;
+    </li>
+    <li><b>4.</b> Garantir sua segurança, mantendo-o sempre dentro de casa e fazendo passeios com
+      coleira e guia (no caso de cães);
+    </li>
+    <li><b>5.</b> Mantê-lo em ambiente limpo, arejado e espaçoso, com possibilidade de abrigo do sol
+      ou chuva;
+    </li>
+    <li><b>6.</b> Não mantê-lo preso em espaços pequenos ou em correntes;</li>
+    <li><b>7.</b>Identificá-lo com plaquinha ou microchip, tornando mais fácil recuperá-lo caso ele se
+      perca;
+    </li>
+    <li><b>8.</b>Identificá-lo com plaquinha ou microchip, tornando mais fácil recuperá-lo caso ele se
+      perca;
+    </li>
+    <li><b>9.</b>NUNCA e em nenhuma circunstância abandoná-lo na rua ou entregá-lo a um
+      desconhecido;
+    </li>
+    <li><b>10.</b>Devolvê-lo ao protetor responsável pela adoção se houver desistência</li>
+    <li><b>11.</b>Comunicar qualquer outro destino que envolva o animal, tais como desaparecimento
+      ou morte;
+    </li>
+    <li><b>12.</b>Permitir a visita do protetor responsável pela adoção ou antigo dono até a completa
+      adaptação do animal (6 meses).
+    </li>
+    <li><b>Estou ciente de que:</b>
+    <li> Um cão ou gato pode viver até 15 anos ou mais, e durante todo este tempo serei 
+      responsável pelo seu bem-estar, principalmente durante sua velhice;
+    </li>
+    <li> O não cumprimento dos itens acima poderá ser interpretado como maus-tratos, o que
+      acarretará a retirada do animal pelo doador responsável a qualquer tempo;
+    </li>
+    <li> Maus-tratos é crime e estarei sujeito às penas previstas pela Lei Federal de Proteção
+      aos Animais nº 9605 art. 32 de 13/fevereiro/1998, no caso de infração.
+    </li>
+</ul>
+</ion-card-content>  
+
+<ion-list radio-group>
+  <ion-list-header>
+    Opções
+  </ion-list-header>
+  
+  <ion-item>
+    <ion-label>Estou de acordo</ion-label>
+    <ion-radio checked="true" value="aceito"></ion-radio>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Não estou de acordo</ion-label>
+    <ion-radio value="recusa"></ion-radio>
+  </ion-item>
+</ion-list>
 
 </ion-content>

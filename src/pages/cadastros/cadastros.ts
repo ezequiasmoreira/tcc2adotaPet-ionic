@@ -50,8 +50,6 @@ export class CadastrosPage {
                                              
             },
             error => { });
-        }
-    
-    
+        }    
   }
 }
