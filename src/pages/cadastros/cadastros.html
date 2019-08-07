@@ -16,10 +16,21 @@
 
 <ion-content padding>
   <ion-item *ngIf="admin">
-      <p>Essa é a pagina de cadastros de admin</p>
+    <button ion-button block>Animal</button>
+    <button ion-button block>Voluntário</button>
+    <button ion-button block>Acompanhamento</button>
+    <button ion-button block>Vacina</button>
+    <button ion-button block>Voluntário</button>
+  </ion-item>
+  <ion-item *ngIf="voluntario">
+    <button ion-button block>Animal</button>
+    <button ion-button block>Acompanhamento</button>
+    <button ion-button block>Vacina</button>
   </ion-item>
   <ion-item *ngIf="master">
-      <p>Essa é a pagina de cadastros de master</p>
-  </ion-item>
-
+    <button ion-button block>Vacina</button>
+    <button ion-button block>Administrador</button>    
+    <button ion-button block>Raças</button> 
+    <button ion-button block>Doenças</button>
+  </ion-item>    
 </ion-content>

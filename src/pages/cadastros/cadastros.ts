@@ -22,6 +22,7 @@ export class CadastrosPage {
 
   admin :string;
   master : string;
+  voluntario : string;
   pessoa: PessoaDTO;
 
   constructor(
@@ -42,6 +43,9 @@ export class CadastrosPage {
                 }
                 if(this.pessoa.perfil == USUARIO_PERFIL.MASTER){
                   this.master = this.pessoa.perfil;
+                }
+                if(this.pessoa.perfil == USUARIO_PERFIL.VOLUNTARIO){
+                  this.voluntario = this.pessoa.perfil;
                 }
                                              
             },
