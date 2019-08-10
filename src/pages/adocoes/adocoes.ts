@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AnimalService } from '../../services/domain/animal.service';
 import { AnimalDTO } from '../../models/animal.dto';
 import { API_CONFIG } from '../../config/api.config';
+import { AdocaoService } from '../../services/domain/adocao.service';
 
 @IonicPage()
 @Component({
@@ -12,11 +13,13 @@ import { API_CONFIG } from '../../config/api.config';
 export class AdocoesPage {
 
   animal: AnimalDTO;
+  habilita : boolean;
 
   constructor(
     public navCtrl: NavController,
      public navParams: NavParams,
-     public animalService: AnimalService) {
+     public animalService: AnimalService,
+     public adocaoService: AdocaoService) {
   }
   
   ionViewDidLoad() {
@@ -35,6 +38,21 @@ export class AdocoesPage {
         this.animal.imageUrl = `${API_CONFIG.imageBaseUrl}/animais/an${this.animal.id}.jpg`;
       },
       error => {});
+  }
+  radioChecked(escolha : string) {
+    if (escolha == "aceito"){
+      this.habilita = true;
+    }else{
+      this.habilita = false;
+    }        
+  }
+  criarAdocao(animal_id : string){
+    this.adocaoService.insert(animal_id)
+    .subscribe(response => {
+      console.log("deu certo");
+      this.navCtrl.setRoot("MyAdocoesPage");
+    },
+    error => {});
   }
 
 }

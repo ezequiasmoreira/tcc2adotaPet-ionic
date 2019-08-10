@@ -59,20 +59,22 @@
 </ul>
 </ion-card-content>  
 
-<ion-list radio-group>
+<ion-list radio-group [(ngModel)]="escolha">
   <ion-list-header>
     Opções
   </ion-list-header>
   
   <ion-item>
     <ion-label>Estou de acordo</ion-label>
-    <ion-radio checked="true" value="aceito"></ion-radio>
+    <ion-radio checked="true" value="aceito" (ionSelect)="radioChecked('aceito')"></ion-radio>
   </ion-item>
 
   <ion-item>
     <ion-label>Não estou de acordo</ion-label>
-    <ion-radio value="recusa"></ion-radio>
+    <ion-radio value="recusa" (ionSelect)="radioChecked('recusa')"></ion-radio>
   </ion-item>
 </ion-list>
-
+<ion-item *ngIf="habilita">
+  <button ion-button block outline (click)="criarAdocao(animal.id)" block>Confirmar</button>
+</ion-item>
 </ion-content>
