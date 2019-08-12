@@ -48,12 +48,14 @@ export class MyApp {
       this.pages = [
         { title: 'Perfil', component: 'ProfilePage' },
         { title: 'Raças', component: 'RacasPage' },
+        { title: 'Minhas adoções', component: 'MyAdocoesPage' },
         { title: 'Sair', component: ''}
       ];
     }else if(perfil == USUARIO_PERFIL.VOLUNTARIO){
       this.pages = [
         { title: 'Perfil', component: 'ProfilePage' },
         { title: 'Raças', component: 'RacasPage' },
+        { title: 'Minhas adoções', component: 'MyAdocoesPage' },
         { title: 'Cadastros', component: 'CadastrosPage' },
         { title: 'Sair', component: ''}
       ];    
@@ -61,6 +63,7 @@ export class MyApp {
       this.pages = [
         { title: 'Perfil', component: 'ProfilePage' },
         { title: 'Raças', component: 'RacasPage' },
+        { title: 'Minhas adoções', component: 'MyAdocoesPage' },
         { title: 'Cadastros', component: 'CadastrosPage' },
         { title: 'Adoções', component: 'RacasPage' },
         { title: 'Sair', component: ''}
@@ -69,9 +72,9 @@ export class MyApp {
       this.pages = [
         { title: 'Perfil', component: 'ProfilePage' },
         { title: 'Raças', component: 'RacasPage' },
+        { title: 'Minhas adoções', component: 'MyAdocoesPage' },
         { title: 'Cadastros', component: 'CadastrosPage' },
         { title: 'Adoções', component: 'RacasPage' },
-        { title: 'Root', component: 'RacasPage' },
         { title: 'Sair', component: ''}
       ];    
     }

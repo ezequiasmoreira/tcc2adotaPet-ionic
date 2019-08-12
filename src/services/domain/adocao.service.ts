@@ -4,6 +4,7 @@ import { Observable } from "rxjs/Rx";
 import { API_CONFIG } from "../../config/api.config";
 import { StorageService } from "../storage.service";
 import { ImageUtilService } from "../image-util.service";
+import { AdocaolDTO } from "../../models/adocao.dto";
 
 @Injectable()
 export class AdocaoService {
@@ -21,6 +22,9 @@ export class AdocaoService {
                 responseType: 'text'
             }
         ); 
+    }
+    getAdocoesUser() : Observable<AdocaolDTO[]>  {
+        return this.http.get<AdocaolDTO[]>(`${API_CONFIG.baseUrl}/adocoes`);
     }
 
 }

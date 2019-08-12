@@ -10,5 +10,17 @@
 
 
 <ion-content padding>
-<p>Minhas  adoções</p>
+  <ion-list>
+    <span ion-item *ngFor="let item of items">    
+      <ion-thumbnail item-start>
+        <img [src]="caminho+item.animal.id+'.jpg' || 'assets/imgs/animais/no-image.jpg'"/>        
+      </ion-thumbnail>
+      <b>{{ item.animal.nome }}</b>       
+      <h5>{{ getDescricaoStatus(item.status) }}</h5>
+      <p>{{item?.ong.logradouro}} , {{item?.ong.numero}} </p>
+      <p>{{item?.ong.bairro}}</p>
+      <p>{{item?.ong.cidade.nome}} / {{item?.ong.cidade.estado.nome}}</p>
+      <button ion-button block outline>{{item?.ong.nome_Fantasia}}</button>
+    </span> 
+  </ion-list>
 </ion-content>

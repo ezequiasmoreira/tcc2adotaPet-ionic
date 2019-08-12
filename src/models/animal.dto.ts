@@ -10,5 +10,7 @@ export interface AnimalDTO {
     ongId? :	string;
     status : string;
     racaId :string;
+    cidade : string;
     imageUrl? : string;
+    
 }
