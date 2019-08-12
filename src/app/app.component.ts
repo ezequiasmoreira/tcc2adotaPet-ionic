@@ -56,6 +56,7 @@ export class MyApp {
         { title: 'Perfil', component: 'ProfilePage' },
         { title: 'Raças', component: 'RacasPage' },
         { title: 'Minhas adoções', component: 'MyAdocoesPage' },
+        { title: 'Solicitação de adoções', component: 'AdocoesSolicitacaoPage' },
         { title: 'Cadastros', component: 'CadastrosPage' },
         { title: 'Sair', component: ''}
       ];    
@@ -64,6 +65,7 @@ export class MyApp {
         { title: 'Perfil', component: 'ProfilePage' },
         { title: 'Raças', component: 'RacasPage' },
         { title: 'Minhas adoções', component: 'MyAdocoesPage' },
+        { title: 'Solicitação de adoções', component: 'AdocoesSolicitacaoPage' },
         { title: 'Cadastros', component: 'CadastrosPage' },
         { title: 'Adoções', component: 'RacasPage' },
         { title: 'Sair', component: ''}
@@ -73,6 +75,7 @@ export class MyApp {
         { title: 'Perfil', component: 'ProfilePage' },
         { title: 'Raças', component: 'RacasPage' },
         { title: 'Minhas adoções', component: 'MyAdocoesPage' },
+        { title: 'Solicitação de adoções', component: 'AdocoesSolicitacaoPage' },
         { title: 'Cadastros', component: 'CadastrosPage' },
         { title: 'Adoções', component: 'RacasPage' },
         { title: 'Sair', component: ''}
