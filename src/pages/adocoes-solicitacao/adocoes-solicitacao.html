@@ -8,5 +8,12 @@
 </ion-header>
   
 <ion-content padding>
-  <p>esta é a pagina de adoções</p>
+  <ion-list>
+    <button ion-item *ngFor="let item of items"  (click)="adocaoDetalhes(item.id)" >
+      <b>{{ item.animal.nome }}</b>       
+      <h5>{{ getDescricaoStatus(item.status) }}</h5>
+      <h4>{{item?.pessoaInterressado.nome}} </h4>
+      <p>{{item?.pessoaInterressado.cidade.nome}}</p> 
+    </button>  
+  </ion-list>
 </ion-content>
