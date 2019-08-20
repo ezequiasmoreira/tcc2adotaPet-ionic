@@ -46,7 +46,7 @@ export class AnimalCadastroPage {
 
   addAnimal(){
     console.log('entrnado');
-    this.animalService.insert(this.formGroup.value)
+    this.animalService.adicionaAnimal(this.formGroup.value)
     .subscribe(response => {
       this.showInsertOk();
       this.navCtrl.push('RacasPage');

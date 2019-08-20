@@ -9,5 +9,30 @@
 
 
 <ion-content padding>
-  <p>Pagina de detalhes da adoção</p>
+    <ion-item>
+        <ion-label stacked>Código : {{item?.codigo}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Gerada : {{item?.dataCadastro}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Status : {{getDescricaoStatus(item?.status)}}</ion-label>
+      <ion-select Name="status" [(ngModel)]="status">
+          <ion-option [value]="1" [selected]="item?.status == 1">Aguardando analise</ion-option>
+          <ion-option [value]="2" [selected]="item?.status == 2">Em analise</ion-option>
+          <ion-option [value]="3" [selected]="item?.status == 3">Rejeitado</ion-option>
+          <ion-option [value]="4" [selected]="item?.status == 4">Aprovado</ion-option>
+      </ion-select>
+    </ion-item>
+    <button ion-item>
+      <ion-label stacked>Interessado : {{item?.pessoaInterressado?.nome}}</ion-label>
+      <ion-label stacked>{{item?.pessoaInterressado?.cidade?.nome}} / {{item?.pessoaInterressado?.cidade?.estado?.nome}}</ion-label>
+    </button>   
+    <button ion-item (click)="mostrarAnimal(item?.animal?.id)">
+      <ion-thumbnail item-start>
+        <img [src]="caminho+item?.animal?.id+'.jpg' || 'assets/imgs/animais/no-image.jpg'"/>  
+      </ion-thumbnail>
+      <h2>{{item?.animal?.codigo}} - {{item?.animal?.nome}}</h2>
+    </button>
+    <button ion-button block outline (click)="finalizar(status)">Finalizar</button>
 </ion-content>

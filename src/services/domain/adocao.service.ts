@@ -29,5 +29,18 @@ export class AdocaoService {
     getAdocoesPorOng() : Observable<AdocaolDTO[]>  {
         return this.http.get<AdocaolDTO[]>(`${API_CONFIG.baseUrl}/adocoes/solicitacao`);
     }
-
+    getAdocaoById(adocao_id : string){
+        return this.http.get<AdocaolDTO>(`${API_CONFIG.baseUrl}/adocoes/${adocao_id}`);
+    }
+    atualizaAdocao(adocao){
+        console.log(adocao.status);
+        return this.http.put(
+            `${API_CONFIG.baseUrl}/adocoes/${adocao.id}`  ,
+            adocao,
+            { 
+                observe: 'response', 
+                responseType: 'text'
+            }
+        ); 
+    }
 }

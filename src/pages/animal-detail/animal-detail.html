@@ -43,6 +43,7 @@
       <br>
     </ion-card-content>
   </ion-card>
-
-  <button ion-button block outline (click)="adotar(item.id)">Adotar</button>
+  <ion-item *ngIf="habilita">
+    <button ion-button block outline (click)="adotar(item.id)">Adotar</button>
+  </ion-item>
 </ion-content>

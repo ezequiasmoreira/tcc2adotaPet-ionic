@@ -46,7 +46,9 @@ import { DoencaService } from '../services/domain/doenca.service';
     VacinaService,
     DoencaService,
     ImageUtilService,
-    AdocaoService
+    AdocaoService,
+    VacinaService,
+    AnimalService
   ]
 })
 export class AppModule {}

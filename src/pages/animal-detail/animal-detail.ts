@@ -12,7 +12,7 @@ import { API_CONFIG } from '../../config/api.config';
 export class AnimalDetailPage {
 
    item: AnimalDTO;
-
+   habilita : boolean = true;
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
@@ -21,9 +21,13 @@ export class AnimalDetailPage {
 
   ionViewDidLoad() {
     let animal_id = this.navParams.get('animal_id');
+    if (this.navParams.get('habilita') == "false") {
+        this.habilita = false;
+    }
     this.animalService.findById(animal_id)
       .subscribe(response => {
         this.item = response;
+
         this.getImageUrlIfExists();
       },
       error => {});
