@@ -17,7 +17,7 @@ export class VacinaService {
     insert(obj : VacinaDTO) {
         console.log(obj);
         return this.http.post(
-            `${API_CONFIG.baseUrl}/vacina`, 
+            `${API_CONFIG.baseUrl}/vacinas`, 
             obj,
             { 
                 observe: 'response', 
