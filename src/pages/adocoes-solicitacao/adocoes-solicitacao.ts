@@ -15,7 +15,6 @@ import { ADOCAO_STATUS } from '../../models/adocao-status';
 export class AdocoesSolicitacaoPage {
 
   items : AdocaolDTO[];
-  caminho : string;
 
   constructor(
     public navCtrl: NavController, 
@@ -26,8 +25,7 @@ export class AdocoesSolicitacaoPage {
   ionViewDidLoad() {
     this.adocaoService.getAdocoesPorOng()
       .subscribe(response => {
-        this.items = response;
-        this.caminho = API_CONFIG.imageBaseUrl +"/animais/an"; 
+        this.items = response;       
       },
       error => {});
     }
