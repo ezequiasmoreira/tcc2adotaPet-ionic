@@ -27,5 +27,17 @@ export class AnimalService {
     getImageFromBucket(id : string) : Observable<any> {
         let url = `${API_CONFIG.imageBaseUrl}/animais/an${id}.jpg`
         return this.http.get(url, {responseType : 'blob'});
-      }  
+    } 
+    
+    insert(obj : AnimalDTO) {
+        console.log(obj);
+        return this.http.post(
+            `${API_CONFIG.baseUrl}/animal`, 
+            obj,
+            { 
+                observe: 'response', 
+                responseType: 'text'
+            }
+        ); 
+    }
 }

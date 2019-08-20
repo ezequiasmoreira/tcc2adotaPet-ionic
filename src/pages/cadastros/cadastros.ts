@@ -52,4 +52,12 @@ export class CadastrosPage {
             error => { });
         }    
   }
+
+  cadastrarAnimal() {
+    this.navCtrl.push('AnimalCadastroPage');    
+  }
+
+  cadastrarVacina(){
+    this.navCtrl.push('VacinaCadastroPage');
+  }
 }

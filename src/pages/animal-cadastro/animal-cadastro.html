@@ -1,0 +1,109 @@
+<ion-header>
+  <ion-navbar  >
+    <ion-title>Cadastrar animal</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+  <form [formGroup]="formGroup" (ngSubmit)="addAnimal(); $event.preventDefault()">
+    
+    <ion-item>
+      <ion-label stacked>Nome*</ion-label>
+      <ion-input formControlName="nome" type="text"></ion-input>
+    </ion-item>
+    <p class="danger" *ngIf="formGroup.controls.nome.dirty && formGroup.controls.nome.errors" margin-left>Valor inválido</p>
+
+    <ion-list radio-group formControlName="castrado">
+      <ion-list-header>
+        Castrado
+      </ion-list-header>
+      <ion-item>
+        <ion-label>Sim</ion-label>
+        <ion-radio checked="true" value="true"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label>Não</ion-label>
+        <ion-radio value="false"></ion-radio>
+      </ion-item>
+    </ion-list>
+    <p class="danger" *ngIf="formGroup.controls.castrado.dirty && formGroup.controls.castrado.errors" margin-left>Valor inválido</p>
+    
+    <ion-list radio-group formControlName="vermifugado">
+      <ion-list-header>
+        Vermifugado
+      </ion-list-header>
+      <ion-item>
+        <ion-label>Sim</ion-label>
+        <ion-radio checked="true" value="true"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label>Não</ion-label>
+        <ion-radio value="false"></ion-radio>
+      </ion-item>
+    </ion-list>
+    <p class="danger" *ngIf="formGroup.controls.vermifugado.dirty && formGroup.controls.vermifugado.errors" margin-left>Valor inválido</p>
+
+    <ion-list radio-group formControlName="porte">
+      <ion-list-header>
+        Porte
+      </ion-list-header>
+      <ion-item>
+        <ion-label>Pequeno</ion-label>
+        <ion-radio checked="true" value="1"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label>Médio</ion-label>
+        <ion-radio value="2"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label>Grande</ion-label>
+        <ion-radio value="3"></ion-radio>
+      </ion-item>
+    </ion-list>
+    <p class="danger" *ngIf="formGroup.controls.porte.dirty && formGroup.controls.porte.errors" margin-left>Valor inválido</p>
+
+    <ion-list radio-group formControlName="genero">
+      <ion-list-header>
+        Gênero
+      </ion-list-header>
+      <ion-item>
+        <ion-label>Macho</ion-label>
+        <ion-radio checked="true" value="1"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label>Fêmea</ion-label>
+        <ion-radio value="2"></ion-radio>
+      </ion-item>
+    </ion-list>
+    <p class="danger" *ngIf="formGroup.controls.genero.dirty && formGroup.controls.genero.errors" margin-left>Valor inválido</p>
+
+    <ion-list radio-group formControlName="status">
+      <ion-list-header>
+        Status
+      </ion-list-header>
+      <ion-item>
+        <ion-label>Disponivel</ion-label>
+        <ion-radio checked="true" value="1"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label>Processamento</ion-label>
+        <ion-radio value="2"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label>Adotado</ion-label>
+        <ion-radio value="4"></ion-radio>
+      </ion-item>
+    </ion-list>
+    <p class="danger" *ngIf="formGroup.controls.status.dirty && formGroup.controls.status.errors" margin-left>Valor inválido</p>
+    
+    <ion-item>
+      <ion-label stacked>Raça*</ion-label>
+      <ion-select formControlName="racaId" >
+        <ion-option *ngFor="let raca of racas; first as f" [value]="raca.id" [selected]="f">{{raca.descricao}}</ion-option>
+      </ion-select>
+    </ion-item>
+   
+    <button ion-button block type="submit" [disabled]="formGroup.invalid">Cadatrar</button>
+  </form>
+</ion-content>
