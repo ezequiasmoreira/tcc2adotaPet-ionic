@@ -54,7 +54,7 @@ export class CadastrosPage {
   }
 
   cadastrarAnimal() {
-    this.navCtrl.push('AnimalCadastroPage');    
+    this.navCtrl.push("AnimalCadastroPage");    
   }
 
   cadastrarVacina(){

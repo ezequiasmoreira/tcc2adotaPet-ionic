@@ -16,6 +16,7 @@ import { AuthInterceptorProvider } from '../interceptors/auth-interceptor';
 import { AnimalService } from '../services/domain/animal.service';
 import { ImageUtilService } from '../services/image-util.service';
 import { AdocaoService } from '../services/domain/adocao.service';
+import { VacinaService } from '../services/domain/vacina.service';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,9 @@ import { AdocaoService } from '../services/domain/adocao.service';
     PessoaService,
     AnimalService,
     ImageUtilService,
-    AdocaoService
+    AdocaoService,
+    VacinaService,
+    AnimalService
   ]
 })
 export class AppModule {}

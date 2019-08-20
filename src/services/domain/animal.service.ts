@@ -29,7 +29,7 @@ export class AnimalService {
         return this.http.get(url, {responseType : 'blob'});
     } 
     
-    insert(obj : AnimalDTO) {
+    adicionaAnimal(obj : AnimalDTO) {
         console.log(obj);
         return this.http.post(
             `${API_CONFIG.baseUrl}/animal`, 
