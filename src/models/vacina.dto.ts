@@ -1,7 +1,8 @@
+
 export interface VacinaDTO {
     id : string;
     especie: string;
-    faixa_idade : string;
+    faixaIdade : string;
     nome : string;	
     prevencao : string;
 }
