@@ -17,6 +17,7 @@ import { AnimalService } from '../services/domain/animal.service';
 import { ImageUtilService } from '../services/image-util.service';
 import { AdocaoService } from '../services/domain/adocao.service';
 import { VacinaService } from '../services/domain/vacina.service';
+import { DoencaService } from '../services/domain/doenca.service';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,8 @@ import { VacinaService } from '../services/domain/vacina.service';
     StorageService,
     PessoaService,
     AnimalService,
+    VacinaService,
+    DoencaService,
     ImageUtilService,
     AdocaoService,
     VacinaService,
