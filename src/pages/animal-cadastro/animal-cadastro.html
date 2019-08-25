@@ -77,25 +77,6 @@
       </ion-item>
     </ion-list>
     <p class="danger" *ngIf="formGroup.controls.genero.dirty && formGroup.controls.genero.errors" margin-left>Valor inválido</p>
-
-    <ion-list radio-group formControlName="status">
-      <ion-list-header>
-        Status
-      </ion-list-header>
-      <ion-item>
-        <ion-label>Disponivel</ion-label>
-        <ion-radio checked="true" value="1"></ion-radio>
-      </ion-item>
-      <ion-item>
-        <ion-label>Processamento</ion-label>
-        <ion-radio value="2"></ion-radio>
-      </ion-item>
-      <ion-item>
-        <ion-label>Adotado</ion-label>
-        <ion-radio value="4"></ion-radio>
-      </ion-item>
-    </ion-list>
-    <p class="danger" *ngIf="formGroup.controls.status.dirty && formGroup.controls.status.errors" margin-left>Valor inválido</p>
     
     <ion-item>
       <ion-label stacked>Raça*</ion-label>

@@ -4,6 +4,7 @@ import { AlertController } from 'ionic-angular/components/alert/alert-controller
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { VacinaService } from '../../services/domain/vacina.service';
 
+
 @IonicPage()
 @Component({
   selector: 'page-vacina-cadastro',
@@ -21,7 +22,7 @@ export class VacinaCadastroPage {
 
       this.formGroup = this.formBuilder.group({
         nome: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(120)]],
-        faixa_idade : ['', [Validators.required, Validators.minLength(3), Validators.maxLength(120)]],
+        faixaIdade : ['', [Validators.required, Validators.minLength(3), Validators.maxLength(120)]],
         prevencao : ['', [Validators.required, Validators.minLength(3), Validators.maxLength(120)]],
         especie : ['1', [Validators.required]]    
       });

@@ -1,58 +1,40 @@
 <ion-header>
-    <ion-navbar  >
-      <ion-title>Cadastrar vacina</ion-title>
-    </ion-navbar>
-  
-  </ion-header>
-  
-  <ion-content padding>
-    <form [formGroup]="formGroup" (ngSubmit)="addVacina(); $event.preventDefault()">
-      
-      <ion-item>
-        <ion-label stacked>Nome*</ion-label>
-        <ion-input formControlName="nome" type="text"></ion-input>
-      </ion-item>
-      <p class="danger" *ngIf="formGroup.controls.nome.dirty && formGroup.controls.nome.errors" margin-left>Valor inválido</p>
-  
-      <ion-item>
-        <ion-label stacked>Faixa de idade*</ion-label>
-        <ion-input formControlName="faixa_idade" type="text"></ion-input>
-      </ion-item>
-      <p class="danger" *ngIf="formGroup.controls.faixa_idade.dirty && formGroup.controls.faixa_idade.errors" margin-left>Valor inválido</p>
-  
-      <ion-item>
-        <ion-label stacked>Prevenção*</ion-label>
-        <ion-input formControlName="prevencao" type="text"></ion-input>
-      </ion-item>
-      <p class="danger" *ngIf="formGroup.controls.prevencao.dirty && formGroup.controls.prevencao.errors" margin-left>Valor inválido</p>
-  
-      <ion-list radio-group formControlName="especie">
-        <ion-list-header>
-          Especie
-        </ion-list-header>
-        <ion-item>
-          <ion-label>Cão</ion-label>
-          <ion-radio checked="true" value="1"></ion-radio>
-        </ion-item>
-        <ion-item>
-          <ion-label>Gato</ion-label>
-          <ion-radio value="2"></ion-radio>
-        </ion-item>
-        <ion-item>
-          <ion-label>Furão</ion-label>
-          <ion-radio value="3"></ion-radio>
-        </ion-item>
-        <ion-item>
-          <ion-label>Mico</ion-label>
-          <ion-radio value="4"></ion-radio>
-        </ion-item>
-        <ion-item>
-          <ion-label>Cavalo</ion-label>
-          <ion-radio value="5"></ion-radio>
-        </ion-item>
-      </ion-list>
-      <p class="danger" *ngIf="formGroup.controls.especie.dirty && formGroup.controls.especie.errors" margin-left>Valor inválido</p>
-     
-      <button ion-button block type="submit" [disabled]="formGroup.invalid">Cadatrar</button>
-    </form>
-  </ion-content>
+  <ion-navbar  >
+    <ion-title>Cadastrar vacina</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+  <form [formGroup]="formGroup" (ngSubmit)="addVacina(); $event.preventDefault()">
+    
+    <ion-item>
+      <ion-label stacked>Nome*</ion-label>
+      <ion-input formControlName="nome" type="text"></ion-input>
+    </ion-item>
+    <p class="danger" *ngIf="formGroup.controls.nome.dirty && formGroup.controls.nome.errors" margin-left>Valor inválido</p>
+
+    <ion-item>
+      <ion-label stacked>Faixa de idade*</ion-label>
+      <ion-input formControlName="faixaIdade" type="text"></ion-input>
+    </ion-item>
+    <p class="danger" *ngIf="formGroup.controls.faixaIdade.dirty && formGroup.controls.faixaIdade.errors" margin-left>Valor inválido</p>
+
+    <ion-item>
+      <ion-label stacked>Prevenção*</ion-label>
+      <ion-input formControlName="prevencao" type="text"></ion-input>
+    </ion-item>
+    <p class="danger" *ngIf="formGroup.controls.prevencao.dirty && formGroup.controls.prevencao.errors" margin-left>Valor inválido</p>
+
+    <ion-item>
+      <ion-label stacked>Espécie*</ion-label>
+      <ion-select formControlName="especie" >
+        <ion-option value="1">Cão</ion-option>
+        <ion-option  value="2">Gato</ion-option>
+        <ion-option  value="3">Passáro</ion-option>
+      </ion-select>
+    </ion-item>
+    
+    <button ion-button block type="submit" [disabled]="formGroup.invalid">Cadatrar</button>
+  </form>
+</ion-content>
