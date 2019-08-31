@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Consulta de adoções</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+    <ion-item>
+        <ion-label stacked>Código</ion-label>
+        <ion-input name="codigo" [(ngModel)]="codigo" type="text"></ion-input>
+      </ion-item>
+   <ion-item>
+    <ion-label stacked>Status</ion-label>
+    <ion-select Name="status" [(ngModel)]="status">
+        <ion-option [value]="1">Aguardando analise</ion-option>
+        <ion-option [value]="2">Em analise</ion-option>
+        <ion-option [value]="3">Rejeitado</ion-option>
+        <ion-option [value]="4">Aprovado</ion-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label stacked>Período inicial</ion-label>
+    <ion-datetime displayFormat="DD MM YYYY"  [(ngModel)]="periodoInical"></ion-datetime> 
+  </ion-item>
+  <ion-item>
+    <ion-label stacked>Período final</ion-label>
+    <ion-datetime displayFormat="DD MM YYYY"  [(ngModel)]="periodoFinal"></ion-datetime> 
+  </ion-item>
+  <ion-item >
+    <button ion-button block outline (click)="pesquisar(codigo,status,periodoInical,periodoFinal)">Pesquisar</button>
+  </ion-item>
+  </ion-content>

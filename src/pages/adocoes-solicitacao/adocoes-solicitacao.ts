@@ -15,6 +15,7 @@ import { ADOCAO_STATUS } from '../../models/adocao-status';
 export class AdocoesSolicitacaoPage {
 
   items : AdocaolDTO[];
+  origem : string = "";
 
   constructor(
     public navCtrl: NavController, 
@@ -23,11 +24,23 @@ export class AdocoesSolicitacaoPage {
   }
 
   ionViewDidLoad() {
+    let parametros = this.navParams.get('parametros');
+    console.log(parametros);
     this.adocaoService.getAdocoesPorOng()
       .subscribe(response => {
         this.items = response;       
       },
       error => {});
+
+      if (parametros != null){  
+        this.origem = "listagem"      
+        this.adocaoService.pesquisar(parametros)
+        .subscribe(response => {
+          console.log(response);
+          this.items =response;
+        },
+        error => {});
+      }
     }
     getDescricaoStatus(status : string){
       if (status == ADOCAO_STATUS.AGUARDANDO){
@@ -45,7 +58,7 @@ export class AdocoesSolicitacaoPage {
       return null;
     }
     adocaoDetalhes(adocao_id : string){
-      this.navCtrl.push('AdocaoDetalhesPage',{adocao_id : adocao_id});    
+      this.navCtrl.push('AdocaoDetalhesPage',{adocao_id : adocao_id,origem : this.origem});       
     }
 
 }

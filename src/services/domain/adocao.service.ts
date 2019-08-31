@@ -43,4 +43,9 @@ export class AdocaoService {
             }
         ); 
     }
+    pesquisar(parametros){
+        parametros.codigo = parametros.codigo > 0 ? parametros.codigo : 0;
+        parametros.status = parametros.status > 0 ? parametros.status : 0; 
+        return this.http.get<AdocaolDTO[]>(`${API_CONFIG.baseUrl}/adocoes/pesquisar?codigo=${parametros.codigo}&status=${parametros.status}&periodoInical=${parametros.periodoInical}&periodoFinal=${parametros.periodoFinal}`);
+    }
 }

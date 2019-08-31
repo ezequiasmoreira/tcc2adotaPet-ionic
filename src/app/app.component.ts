@@ -58,6 +58,7 @@ export class MyApp {
         { title: 'Minhas adoções', component: 'MyAdocoesPage' },
         { title: 'Solicitação de adoções', component: 'AdocoesSolicitacaoPage' },
         { title: 'Cadastros', component: 'CadastrosPage' },
+        { title: 'Adoções', component: 'AdocoesPainelPage' },
         { title: 'Sair', component: ''}
       ];    
     }else if(perfil == USUARIO_PERFIL.ADMIN){
@@ -67,7 +68,7 @@ export class MyApp {
         { title: 'Minhas adoções', component: 'MyAdocoesPage' },
         { title: 'Solicitação de adoções', component: 'AdocoesSolicitacaoPage' },
         { title: 'Cadastros', component: 'CadastrosPage' },
-        { title: 'Adoções', component: 'RacasPage' },
+        { title: 'Adoções', component: 'AdocoesPainelPage' },
         { title: 'Sair', component: ''}
       ];    
     }else if(perfil == USUARIO_PERFIL.MASTER){
@@ -77,7 +78,7 @@ export class MyApp {
         { title: 'Minhas adoções', component: 'MyAdocoesPage' },
         { title: 'Solicitação de adoções', component: 'AdocoesSolicitacaoPage' },
         { title: 'Cadastros', component: 'CadastrosPage' },
-        { title: 'Adoções', component: 'RacasPage' },
+        { title: 'Adoções', component: 'AdocoesPainelPage' },
         { title: 'Sair', component: ''}
       ];    
     }

@@ -62,7 +62,7 @@ export class AdocaoDetalhesPage {
     }
     this.adocaoService.atualizaAdocao(adocao)
     .subscribe(response => {       
-      this.navCtrl.setRoot("AdocoesSolicitacaoPage");
+      this.navCtrl.setRoot("AdocoesPainelPage");
     },
     error => {
       console.log(error);
