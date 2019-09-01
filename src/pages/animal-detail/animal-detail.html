@@ -40,6 +40,20 @@
       <span  m *ngFor="let doenca of item?.doencas">
         <p>Nome: {{doenca.descricao}}</p>
       </span>
+      <span *ngIf="master || admin || voluntario">   
+        <br>     
+        <b>
+          Acompanhamentos:
+        </b>
+        <span  m *ngFor="let acompanhamento of item?.acompanhamentos">
+          <p>Descrição: {{acompanhamento.descricao}}</p>
+          <p>Observação: {{acompanhamento.observacao}}</p>
+          <p>Cadastrado: {{acompanhamento.dataCadastro}}</p>
+          <p>Agendado: {{acompanhamento.dataAgendado}}</p>
+          <br>
+          <hr>
+        </span>        
+      </span>
       <br>
     </ion-card-content>
   </ion-card>
