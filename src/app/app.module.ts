@@ -18,6 +18,7 @@ import { ImageUtilService } from '../services/image-util.service';
 import { AdocaoService } from '../services/domain/adocao.service';
 import { VacinaService } from '../services/domain/vacina.service';
 import { DoencaService } from '../services/domain/doenca.service';
+import { AcompanhamentoService } from '../services/domain/acompanhamento.service';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { DoencaService } from '../services/domain/doenca.service';
     ImageUtilService,
     AdocaoService,
     VacinaService,
-    AnimalService
+    AnimalService,
+    AcompanhamentoService
   ]
 })
 export class AppModule {}

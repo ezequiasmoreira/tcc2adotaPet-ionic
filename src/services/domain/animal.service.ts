@@ -13,8 +13,8 @@ export class AnimalService {
         return this.http.get<AnimalDTO>(`${API_CONFIG.baseUrl}/animais/${produto_id}`);
     }
 
-    findAll() : Observable<AnimalDTO[]>  {
-        return this.http.get<AnimalDTO[]>(`${API_CONFIG.baseUrl}/animais`);
+    findAll(ong_id : string) : Observable<AnimalDTO[]>  {
+        return this.http.get<AnimalDTO[]>(`${API_CONFIG.baseUrl}/animais/ong/${ong_id}`);
     }
 
     findByRaca(raca_id : string) {
