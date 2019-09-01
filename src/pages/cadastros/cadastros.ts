@@ -60,4 +60,8 @@ export class CadastrosPage {
   cadastrarVacina(){
     this.navCtrl.setRoot('VacinaCadastroPage');
   }
+
+  cadastrarAcompanhamento(){
+    this.navCtrl.setRoot('AcompanhamentoPage');
+  }
 }

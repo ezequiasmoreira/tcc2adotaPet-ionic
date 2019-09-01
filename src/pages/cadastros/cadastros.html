@@ -19,17 +19,18 @@
     <button ion-button block (click)="cadastrarAnimal()">Animal</button>
     <button ion-button block (click)="cadastrarVacina()">Vacina</button>
     <button ion-button block>Voluntário</button>
-    <button ion-button block>Acompanhamento</button>
+    <button ion-button block (click)="cadastrarAcompanhamento()">Acompanhamento</button>
     <button ion-button block>Voluntário</button>
   </ion-item>
   <ion-item *ngIf="voluntario">
     <button ion-button block (click)="cadastrarAnimal()">Animal</button>
     <button ion-button block (click)="cadastrarVacina()">Vacina</button>
-    <button ion-button block>Acompanhamento</button>
+    <button ion-button block (click)="cadastrarAcompanhamento()">Acompanhamento</button>
   </ion-item>
   <ion-item *ngIf="master">
     <button ion-button block (click)="cadastrarAnimal()">Animal</button>
     <button ion-button block (click)="cadastrarVacina()">Vacina</button>
+    <button ion-button block (click)="cadastrarAcompanhamento()">Acompanhamento</button>
     <button ion-button block>Administrador</button>    
     <button ion-button block>Raças</button> 
     <button ion-button block>Doenças</button>
