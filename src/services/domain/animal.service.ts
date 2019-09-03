@@ -40,4 +40,16 @@ export class AnimalService {
             }
         ); 
     }
+
+    editarAnimal(obj : AnimalDTO) {
+        console.log(obj);
+        return this.http.put(
+            `${API_CONFIG.baseUrl}/animal`, 
+            obj,
+            { 
+                observe: 'response', 
+                responseType: 'text'
+            }
+        ); 
+    }
 }

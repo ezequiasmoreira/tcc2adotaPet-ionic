@@ -16,7 +16,6 @@ export class AnimalCadastroPage {
 
   formGroup: FormGroup;
   racas: RacaDTO[];
-  animalId: string;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -25,9 +24,6 @@ export class AnimalCadastroPage {
     public racaService: RacaService,
     public alertCtrl: AlertController
   ) {
-    this.animalId = this.navParams.get('animal_id');
-
-    if(this.animalId == null){
       this.formGroup = this.formBuilder.group({
         nome: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(120)]],
         genero: ['1', [Validators.required]],
@@ -37,23 +33,6 @@ export class AnimalCadastroPage {
         status: ['1', [Validators.required]],
         racaId: [null, [Validators.required]]
       });
-    }
-    else{
-      this.animalService.findById(this.animalId)
-      .subscribe(response => {
-        this.formGroup = this.formBuilder.group({
-          nome: [response.nome, [Validators.required, Validators.minLength(3), Validators.maxLength(120)]],
-          genero: [response.genero, [Validators.required]],
-          porte: [response.porte, [Validators.required]],
-          vermifugado: [response.vermifugado, [Validators.required]],
-          castrado: [response.castrado, [Validators.required]],
-          status: [response.status, [Validators.required]],
-          racaId: [response.racaId, [Validators.required]]
-        });
-      },
-        error => { });
-    }
-    
   }
 
   ionViewDidLoad() {
