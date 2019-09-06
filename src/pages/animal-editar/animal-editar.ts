@@ -16,8 +16,18 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class AnimalEditarPage {
 
   animalId: string;
-  animal: FormGroup;
-  item: AnimalDTO;
+  nome: string;
+  codigo: string;
+  genero : string;
+  porte : string;	
+  vacinado : string;
+  vermifugado : string;
+  castrado : string;
+  ongId? :	string;
+  status : string;
+  racaId :string;
+  cidade : string;
+  imageUrl? : string;
   racas: RacaDTO[];
   
   constructor(public navCtrl: NavController, public navParams: NavParams,
@@ -27,53 +37,76 @@ export class AnimalEditarPage {
     public alertCtrl: AlertController) {
 
     this.animalId = this.navParams.get('animal_id');
-    
-    
-           
-
-      /*this.animal = this.formBuilder.group({
-        nome: ['ar[0]', [Validators.required, Validators.minLength(3), Validators.maxLength(120)]],
-        genero: ['1', [Validators.required]],
-        porte: ['1', [Validators.required]],
-        vermifugado: ['true', [Validators.required]],
-        castrado: ['true', [Validators.required]],
-        status: ['1', [Validators.required]],
-        racaId: [null, [Validators.required]]
-      });*/
+   
   }
 
   ionViewDidLoad() {
     this.animalService.findById(this.animalId)
     .subscribe(response => {
-      this.item = response;
-      this.animal = this.formBuilder.group({
-        nome: [this.item.nome, [Validators.required, Validators.minLength(3), Validators.maxLength(120)]],
-        genero: ['1', [Validators.required]],
-        porte: ['1', [Validators.required]],
-        vermifugado: ['true', [Validators.required]],
-        castrado: ['true', [Validators.required]],
-        status: ['1', [Validators.required]],
-        racaId: [null, [Validators.required]]
-      });
-      
+      this.nome = response.nome;
+      this.codigo = response.codigo;
+      this.genero = response.genero;
+      this.porte = response.porte;
+      this.vacinado = response.vacinado;
+      this.vermifugado = response.vermifugado;
+      this.castrado = response.castrado;
+      this.ongId = response.ongId;
+      this.status = response.status;
+      this.cidade = response.cidade;
+      this.racaId = response.racaId;
+      this.imageUrl = response.imageUrl;
     },
     error => {});
 
     this.racaService.findAll()
     .subscribe(response => {
       this.racas = response;
-      this.animal.controls.racaId.setValue(this.racas[0].id);
+      console.log(this.racas);
     },
       error => { });
   }
 
-  editarAnimal() {
-    this.animalService.editarAnimal(this.animal.value)
+  editarAnimal(nome, porte, genero, vacinado,vermifugado, castrado, racaId) {
+    console.log(nome);
+    let animal : AnimalDTO = {
+      id : this.animalId,
+      nome : nome,
+      codigo : this.codigo,
+      genero : genero,
+      porte : porte,
+      vacinado : vacinado,
+      vermifugado : vermifugado,
+      castrado : castrado,
+      ongId :	this.ongId,
+      status : status,
+      racaId : racaId,
+      cidade : this.cidade,
+      imageUrl: this.imageUrl
+      
+    }
+    this.animalService.editarAnimal(animal)
       .subscribe(response => {
         //this.showInsertOk();
         this.navCtrl.push('RacasPage');
       },
         error => { });
+  }
+
+  showInsertOk() {
+    let alert = this.alertCtrl.create({
+      title: 'Sucesso!',
+      message: 'Animal atualizado',
+      enableBackdropDismiss: false,
+      buttons: [
+        {
+          text: 'Ok',
+          handler: () => {
+            this.navCtrl.push('AnimalDetailPage', {animal_id: this.animalId});
+          }
+        }
+      ]
+    });
+    alert.present();
   }
 
 }

@@ -1,86 +1,59 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>{{item?.nome}}</ion-title>
+    <ion-title>{{nome}}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-  <form [formGroup]="animal" (ngSubmit)="editarAnimal(); $event.preventDefault()">
-    
-    <ion-item>
-      <ion-label stacked>Nome*</ion-label>
-      <ion-input formControlName="nome" type="text"></ion-input>
-    </ion-item>
-    <p class="danger" *ngIf="animal.controls.nome.dirty && animal.controls.nome.errors" margin-left>Valor inválido</p>
+  <ion-item>
+    <ion-label stacked>Nome:</ion-label>
+    <ion-input name="nome" [(ngModel)]="nome" [value]="nome"  type="text"></ion-input>
+  </ion-item>
 
-    <ion-list radio-group formControlName="castrado">
-      <ion-list-header>
-        Castrado
-      </ion-list-header>
-      <ion-item>
-        <ion-label>Sim</ion-label>
-        <ion-radio checked="true" value="true"></ion-radio>
-      </ion-item>
-      <ion-item>
-        <ion-label>Não</ion-label>
-        <ion-radio value="false"></ion-radio>
-      </ion-item>
-    </ion-list>
-    <p class="danger" *ngIf="animal.controls.castrado.dirty && animal.controls.castrado.errors" margin-left>Valor inválido</p>
-    
-    <ion-list radio-group formControlName="vermifugado">
-      <ion-list-header>
-        Vermifugado
-      </ion-list-header>
-      <ion-item>
-        <ion-label>Sim</ion-label>
-        <ion-radio checked="true" value="true"></ion-radio>
-      </ion-item>
-      <ion-item>
-        <ion-label>Não</ion-label>
-        <ion-radio value="false"></ion-radio>
-      </ion-item>
-    </ion-list>
-    <p class="danger" *ngIf="animal.controls.vermifugado.dirty && animal.controls.vermifugado.errors" margin-left>Valor inválido</p>
+  <ion-item>
+    <ion-label stacked>Castrado:</ion-label>
+    <ion-select Name="castrado" [(ngModel)]="castrado">
+        <ion-option [value]="true">Sim</ion-option>
+        <ion-option [value]="false">Não</ion-option>
+    </ion-select>
+  </ion-item>
 
-    <ion-list radio-group formControlName="porte">
-      <ion-list-header>
-        Porte
-      </ion-list-header>
-      <ion-item>
-        <ion-label>Pequeno</ion-label>
-        <ion-radio checked="true" value="1"></ion-radio>
-      </ion-item>
-      <ion-item>
-        <ion-label>Médio</ion-label>
-        <ion-radio value="2"></ion-radio>
-      </ion-item>
-      <ion-item>
-        <ion-label>Grande</ion-label>
-        <ion-radio value="3"></ion-radio>
-      </ion-item>
-    </ion-list>
-    <p class="danger" *ngIf="animal.controls.porte.dirty && animal.controls.porte.errors" margin-left>Valor inválido</p>
+  <ion-item>
+    <ion-label stacked>Vermifugado:</ion-label>
+    <ion-select Name="vermifugado" [(ngModel)]="vermifugado">
+        <ion-option [value]="true">Sim</ion-option>
+        <ion-option [value]="false">Não</ion-option>
+    </ion-select>
+  </ion-item>
 
-    <ion-list radio-group formControlName="genero">
-      <ion-list-header>
-        Gênero
-      </ion-list-header>
-      <ion-item>
-        <ion-label>Macho</ion-label>
-        <ion-radio checked="true" value="1"></ion-radio>
-      </ion-item>
-      <ion-item>
-        <ion-label>Fêmea</ion-label>
-        <ion-radio value="2"></ion-radio>
-      </ion-item>
-    </ion-list>
-    <p class="danger" *ngIf="animal.controls.genero.dirty && animal.controls.genero.errors" margin-left>Valor inválido</p>
-    
-   
-    <button ion-button block type="submit" [disabled]="animal.invalid">Editar</button>
-  </form>
+  <ion-item>
+    <ion-label stacked>Porte:</ion-label>
+    <ion-select Name="porte" [(ngModel)]="porte">
+        <ion-option [value]="1">Pequeno</ion-option>
+        <ion-option [value]="2">Médio</ion-option>
+        <ion-option [value]="3">Grande</ion-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label stacked>Gênero:</ion-label>
+    <ion-select Name="genero" [(ngModel)]="genero">
+        <ion-option [value]="1">Macho</ion-option>
+        <ion-option [value]="2">Fêmea</ion-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label stacked>Raça</ion-label>
+    <ion-select name="raca" [(ngModel)]="racaId">
+      <ion-option *ngFor="let raca of racas; first as a" [value]="raca.id">{{raca.nome}}</ion-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item >
+    <button ion-button block outline (click)="editarAnimal(nome, porte, genero, vacinado,vermifugado, castrado, racaId)">Editar</button>
+  </ion-item>
 </ion-content>
