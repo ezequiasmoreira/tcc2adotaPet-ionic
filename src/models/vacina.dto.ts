@@ -5,4 +5,5 @@ export interface VacinaDTO {
     faixaIdade : string;
     nome : string;	
     prevencao : string;
+    animalId: string;
 }

@@ -19,6 +19,8 @@ import { AdocaoService } from '../services/domain/adocao.service';
 import { VacinaService } from '../services/domain/vacina.service';
 import { DoencaService } from '../services/domain/doenca.service';
 import { AcompanhamentoService } from '../services/domain/acompanhamento.service';
+import { SearchPipe } from '../pipes/search/search';
+import { PipesModule } from '../pipes/pipes.module';
 import { EstadoService } from '../services/domain/estado.service';
 import { CidadeService } from '../services/domain/cidade.service';
 
@@ -30,6 +32,7 @@ import { CidadeService } from '../services/domain/cidade.service';
     BrowserModule,
     HttpClientModule,
     IonicModule.forRoot(MyApp),
+    PipesModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

@@ -13,8 +13,9 @@
 </ion-content>
 
 <ion-content padding>
+    <ion-searchbar placeholder="buscar" [(ngModel)]="terms"></ion-searchbar>
   <ion-list>
-    <button ion-item *ngFor="let item of items" (click)="showAnimais(item.id)" >
+    <button ion-item *ngFor="let item of items | search : terms" (click)="showAnimais(item.id)" >
       <ion-thumbnail item-start>
         <img src="{{ImageUrl}}/raca{{item.id}}.jpg">
       </ion-thumbnail>

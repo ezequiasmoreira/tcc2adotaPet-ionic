@@ -21,6 +21,7 @@ export class RacasPage {
   ImageUrl: string = API_CONFIG.imageBaseUrl+"/racas";
 
   items: RacaDTO[];
+  column: string = 'descricao';
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public racaService: RacaService) {
   }
