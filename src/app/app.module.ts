@@ -19,6 +19,8 @@ import { AdocaoService } from '../services/domain/adocao.service';
 import { VacinaService } from '../services/domain/vacina.service';
 import { DoencaService } from '../services/domain/doenca.service';
 import { AcompanhamentoService } from '../services/domain/acompanhamento.service';
+import { EstadoService } from '../services/domain/estado.service';
+import { CidadeService } from '../services/domain/cidade.service';
 
 @NgModule({
   declarations: [
@@ -50,7 +52,9 @@ import { AcompanhamentoService } from '../services/domain/acompanhamento.service
     AdocaoService,
     VacinaService,
     AnimalService,
-    AcompanhamentoService
+    AcompanhamentoService,
+    EstadoService,
+    CidadeService
   ]
 })
 export class AppModule {}

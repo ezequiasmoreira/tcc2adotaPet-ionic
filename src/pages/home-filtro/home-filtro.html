@@ -1,0 +1,67 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Pesquisar animal</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-item>
+      <ion-label stacked>Nome</ion-label>
+      <ion-input name="nome" [(ngModel)]="nome" type="text"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label stacked>Genero</ion-label>
+    <ion-select Name="genero" [(ngModel)]="genero">
+        <ion-option [value]="0" [selected]="true">Selecione</ion-option>
+        <ion-option [value]="1">Macho</ion-option>
+        <ion-option [value]="2">Femea</ion-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label stacked>Porte</ion-label>
+    <ion-select Name="porte" [(ngModel)]="porte">
+        <ion-option [value]="0" [selected]="true">Selecione</ion-option>
+        <ion-option [value]="1">Porte</ion-option>
+        <ion-option [value]="2">Porte</ion-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label stacked>Castrado</ion-label>
+    <ion-select Name="castrado" [(ngModel)]="castrado">
+        <ion-option [value]="0" [selected]="true">Selecione</ion-option>
+        <ion-option [value]="1">Sim</ion-option>
+        <ion-option [value]="2">Não</ion-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label stacked>Estado</ion-label>
+    <ion-select Name="estadoId" [(ngModel)]="estadoId" (ionChange)="updateCidades(estadoId)">
+      <ion-option *ngFor="let estado of estados; first as f" [value]="estado.id" [selected]="f">{{estado.nome}}</ion-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label stacked>Cidade</ion-label>
+    <ion-select Name="cidadeId" [(ngModel)]="cidadeId">
+      <ion-option *ngFor="let cidade of cidades" [value]="cidade.id">{{cidade.nome}}</ion-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label stacked>Raca</ion-label>
+    <ion-select name="racaId" [(ngModel)]="racaId">
+      <ion-option *ngFor="let raca of racas; first as r" [value]="raca.id">{{raca.codigo}} - {{raca.descricao}}</ion-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item >
+    <button ion-button block outline (click)="pesquisar(nome,genero,porte,castrado,estadoId,cidadeId,racaId)">Pesquisar</button>
+  </ion-item>
+</ion-content>

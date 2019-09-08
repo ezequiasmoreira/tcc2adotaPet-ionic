@@ -35,7 +35,7 @@ export class HomePage {
     this.auth.refreshToken()
       .subscribe(response => {
         this.auth.successfulLogin(response.headers.get('Authorization'));        
-        this.navCtrl.setRoot('RacasPage');
+        this.navCtrl.setRoot('HomeFiltroPage');
       },
       error => {});  
   }
@@ -48,7 +48,7 @@ export class HomePage {
           localStorage.setItem('controlador','1');
           window.location.reload(); 
         }
-        this.navCtrl.setRoot('RacasPage');
+        this.navCtrl.setRoot('HomeFiltroPage');
       },
       error => {});    
   }
