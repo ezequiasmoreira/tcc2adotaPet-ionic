@@ -20,6 +20,10 @@ export class AnimalService {
     findByRaca(raca_id : string) {
         return this.http.get(`${API_CONFIG.baseUrl}/animais/raca/${raca_id}`);
     }
+    findByFilter(parametros) { 
+        return this.http.get<AnimalDTO[]>(
+            `${API_CONFIG.baseUrl}/animais/pesquisar?nome=${parametros.nome}&genero=${parametros.genero}&porte=${parametros.porte}&castrado=${parametros.castrado}&estadoId=${parametros.estadoId}&cidadeId=${parametros.cidadeId}&racaId=${parametros.racaId}`);
+    }
     getSmallImageFromBucket(id : string) : Observable<any> {
         let url = `${API_CONFIG.imageBaseUrl}/animais/an${id}.jpg`
         return this.http.get(url, {responseType : 'blob'});

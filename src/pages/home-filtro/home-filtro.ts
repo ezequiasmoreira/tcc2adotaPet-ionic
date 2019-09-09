@@ -6,6 +6,7 @@ import { EstadoService } from '../../services/domain/estado.service';
 import { EstadoDTO } from '../../models/estado.dto';
 import { CidadeService } from '../../services/domain/cidade.service';
 import { CidadeDTO } from '../../models/cidade.dto';
+import { AnimalService } from '../../services/domain/animal.service';
 
 
 @IonicPage()
@@ -24,6 +25,7 @@ export class HomeFiltroPage {
     public racaService: RacaService,
     public estadoService: EstadoService,
     public cidadeService: CidadeService,
+    public animalService: AnimalService,  
     public navParams: NavParams) {
   }
 
@@ -51,15 +53,21 @@ export class HomeFiltroPage {
       error => {});
   }
   pesquisar(nome,genero,porte,castrado,estadoId,cidadeId,racaId){
+    
     let parametros = {
       "nome" : nome == undefined ? "" : nome,
-      "genero" : genero,
-      "porte" : porte,
-      "castrado" : castrado,
-      "estadoId" : estadoId,
+      "genero" : genero == undefined ? "0" : genero,
+      "porte" : porte == undefined ? "0" : porte,
+      "castrado" : castrado  == undefined ? "0" : castrado,
+      "estadoId" : estadoId == undefined ? "1" : estadoId,
       "cidadeId" : cidadeId == undefined ? "0" : cidadeId,
       "racaId" : racaId == undefined ? "0" : racaId,
     }
+    this.animalService.findByFilter(parametros)
+    .subscribe(response => {
+      this.navCtrl.push('AnimaisPage',{parametros : response, origem : 'homefiltro'});  
+    },
+    error => {});
     //this.navCtrl.push('AdocoesSolicitacaoPage',{parametros : parametros});  
   }
 

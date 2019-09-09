@@ -12,6 +12,7 @@ import { API_CONFIG } from '../../config/api.config';
 export class AnimaisPage {
 
   items : AnimalDTO[];
+  origem : string = 'animais';
 
   constructor(
     public navCtrl: NavController, 
@@ -22,12 +23,21 @@ export class AnimaisPage {
 
   ionViewDidLoad() {
     let raca_id = this.navParams.get('raca_id');
-    this.animalService.findByRaca(raca_id)
-    .subscribe(response => {
-      this.items = response['content'];
+    let parametros = this.navParams.get('parametros');
+    let origem = this.navParams.get('origem');
+    console.log(parametros + origem);
+    if (origem == 'animais') {
+      this.animalService.findByRaca(raca_id)
+      .subscribe(response => {
+        this.items = response['content'];
+        this.loadImageUrls();
+      },
+      error => {});
+    }
+    if (origem == 'homefiltro'){
+      this.items = parametros;
       this.loadImageUrls();
-    },
-    error => {});
+    }
   }
 
   loadImageUrls() {
