@@ -64,4 +64,7 @@ export class CadastrosPage {
   cadastrarAcompanhamento(){
     this.navCtrl.setRoot('AcompanhamentoPage');
   }
+  cadastrarOng(){
+    this.navCtrl.setRoot('OngCadastroPage');
+  }
 }

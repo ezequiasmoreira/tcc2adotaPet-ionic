@@ -23,6 +23,7 @@ import { SearchPipe } from '../pipes/search/search';
 import { PipesModule } from '../pipes/pipes.module';
 import { EstadoService } from '../services/domain/estado.service';
 import { CidadeService } from '../services/domain/cidade.service';
+import { OngService } from '../services/domain/ong.service';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { CidadeService } from '../services/domain/cidade.service';
     AnimalService,
     AcompanhamentoService,
     EstadoService,
-    CidadeService
+    CidadeService,
+    OngService
   ]
 })
 export class AppModule {}
