@@ -60,6 +60,9 @@
   <ion-item *ngIf="master || admin || voluntario">
     <button ion-button block outline (click)="editar(item.id)">Editar</button>
   </ion-item>
+  <ion-item *ngIf="master || admin || voluntario">
+    <button ion-button block outline (click)="addDoenca(item.id)">Vincular doença</button>
+  </ion-item>
   <ion-item *ngIf="habilita">
     <button ion-button block outline (click)="adotar(item.id)">Adotar</button>
   </ion-item>

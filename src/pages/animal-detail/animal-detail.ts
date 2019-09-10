@@ -77,5 +77,8 @@ export class AnimalDetailPage {
   editar(animal_id : string) {
     this.navCtrl.push('AnimalEditarPage',{animal_id : animal_id});    
   }
+  addDoenca(animal_id : string) {
+    this.navCtrl.push('DoencaCadastroPage',{animal_id : animal_id});    
+  }
 }
 

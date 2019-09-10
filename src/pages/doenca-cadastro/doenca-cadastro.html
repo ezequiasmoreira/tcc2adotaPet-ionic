@@ -1,18 +1,22 @@
-<!--
-  Generated template for the DoencaCadastroPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-
   <ion-navbar>
-    <ion-title>doenca-cadastro</ion-title>
+    <ion-title>Vincular doença</ion-title>
   </ion-navbar>
-
 </ion-header>
 
 
 <ion-content padding>
+  <ion-item>
+    <ion-label stacked>{{nome}}</ion-label>
+  </ion-item>
+  <ion-item>
+    <ion-label stacked>Doença</ion-label>
+    <ion-select name="doenca" [(ngModel)]="id">
+      <ion-option *ngFor="let doenca of doencas; first as a" [value]="doenca.id">{{doenca.id}} - {{doenca.descricao}}</ion-option>
+    </ion-select>
+  </ion-item>
 
+  <ion-item >
+    <button ion-button block outline (click)="addDoenca(id)">Vincular</button>
+  </ion-item>
 </ion-content>

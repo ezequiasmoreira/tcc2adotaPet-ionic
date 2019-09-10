@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
+import { AnimalService } from '../../services/domain/animal.service';
 import { AlertController } from 'ionic-angular/components/alert/alert-controller';
 import { DoencaService } from '../../services/domain/doenca.service';
+import { DoencaDTO } from '../../models/doenca.dto';
 
 
 @IonicPage()
@@ -12,43 +14,60 @@ import { DoencaService } from '../../services/domain/doenca.service';
 })
 export class DoencaCadastroPage {
 
-  formGroup: FormGroup;
+  doencas : DoencaDTO[];
+  animalId: string;
+  nome: string;
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
     public formBuilder: FormBuilder,
+    public animalService: AnimalService,
     public doencaService: DoencaService,
     public alertCtrl: AlertController,
   ) {
-    this.formGroup = this.formBuilder.group({
-      descricao : ['', [Validators.required, Validators.minLength(3), Validators.maxLength(120)]],
-    });
+    this.animalId = this.navParams.get('animal_id');
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad DoencaCadastroPage');
-  }
-
-  addDoenca(){
-    this.doencaService.insert(this.formGroup.value)
+    this.doencaService.findAll()
     .subscribe(response => {
-      this.showInsertOk();
-      this.navCtrl.push('RacasPage');
+      this.doencas = response;
+    },
+    error => {});
+
+    this.animalService.findById(this.animalId)
+    .subscribe(response => {
+      this.nome = response.nome;
     },
     error => {});
   }
 
+  addDoenca(id){
+    let doencaById = this.doencas.find(x => x.id == id);
+    let doenca : DoencaDTO = {
+      id : id,
+      codigo : doencaById.codigo,
+      descricao : doencaById.descricao,
+      animal : this.animalId
+    }
+
+    this.doencaService.insert(doenca)
+    .subscribe(response => {
+      this.showInsertOk();
+    },
+    error => {});
+  }
   
   showInsertOk() {
     let alert = this.alertCtrl.create({
       title: 'Sucesso!',
-      message: 'Doença cadastrada com sucesso',
+      message: 'Doença vinculada com sucesso',
       enableBackdropDismiss: false,
       buttons: [
         {
           text: 'Ok',
           handler: () => {
-            this.navCtrl.pop();
+            this.navCtrl.push('AnimalDetailPage', {animal_id: this.animalId});
           }
         }
       ]
