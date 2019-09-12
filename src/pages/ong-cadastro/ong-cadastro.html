@@ -47,13 +47,13 @@
     <ion-item>
       <ion-label stacked>Estado*</ion-label>
       <ion-select formControlName="estadoId" (ionChange)="updateCidades()">
-        <ion-option *ngFor="let estado of estados; first as f" [value]="estado.id" [selected]="f">{{estado.nome}}</ion-option>
+        <ion-option *ngFor="let estado of estados; first as f"  [value]="estado.id" [selected]="f">{{estado.nome}}</ion-option>
       </ion-select>
     </ion-item>
     <ion-item>
       <ion-label stacked>Cidade*</ion-label>
-      <ion-select formControlName="cidadeId">
-        <ion-option *ngFor="let cidade of cidades" [value]="cidade.id">{{cidade.nome}}</ion-option>
+      <ion-select formControlName="cidadeId" >
+        <ion-option *ngFor="let cidade of cidades; first as cid" [value]="cidade.id"  [selected]="cid">{{cidade.nome}}</ion-option>
       </ion-select>
     </ion-item>
     <button ion-button block type="submit" [disabled]="formGroup.invalid">Cadastrar</button>

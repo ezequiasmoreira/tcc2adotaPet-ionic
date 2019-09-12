@@ -83,6 +83,7 @@ export class MyApp {
         { title: 'Solicitação de adoções', component: 'AdocoesSolicitacaoPage' },
         { title: 'Cadastros', component: 'CadastrosPage' },
         { title: 'Adoções', component: 'AdocoesPainelPage' },
+        { title: 'listagem', component: 'OngListagemPage' },
         { title: 'Sair', component: ''}
       ];    
     }

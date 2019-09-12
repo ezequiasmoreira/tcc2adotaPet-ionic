@@ -1,0 +1,18 @@
+<ion-header>
+    <ion-navbar>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>Ongs</ion-title>
+    </ion-navbar>
+  </ion-header>
+  
+  <ion-content padding>
+    <ion-list>
+      <button ion-item *ngFor="let item of items" (click)="editar(item)">
+        <h2>{{item.nome_Fantasia}}</h2>
+        <br>
+        <p>{{item.cnpj}}</p>
+      </button>
+    </ion-list>
+  </ion-content>
