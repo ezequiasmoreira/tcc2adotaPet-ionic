@@ -47,10 +47,7 @@ export class HomePage {
     this.auth.authenticate(this.creds)
       .subscribe(response => {
         this.auth.successfulLogin(response.headers.get('Authorization'));
-        if (localStorage.getItem('controlador') == null){
-          localStorage.setItem('controlador','1');
-          this.myApp.iniciar();
-        }
+        this.myApp.iniciar();
         this.navCtrl.setRoot('HomeFiltroPage');
       },
       error => {});    

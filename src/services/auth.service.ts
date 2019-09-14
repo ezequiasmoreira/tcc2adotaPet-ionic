@@ -44,6 +44,5 @@ export class AuthService {
 
     logout() {
         this.storage.setLocalUser(null);
-        localStorage.removeItem('controlador');
     }
 }
