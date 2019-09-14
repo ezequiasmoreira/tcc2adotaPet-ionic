@@ -54,11 +54,11 @@ export class CadastrosPage {
   }
 
   cadastrarAnimal() {
-    this.navCtrl.setRoot("AnimalCadastroPage");    
+    this.navCtrl.push("AnimalCadastroPage");    
   }
 
   cadastrarVacina(){
-    this.navCtrl.setRoot('VacinaCadastroPage');
+    this.navCtrl.push('VacinaCadastroPage');
   }
 
   cadastrarAcompanhamento(){
@@ -66,5 +66,8 @@ export class CadastrosPage {
   }
   cadastrarOng(){
     this.navCtrl.setRoot('OngCadastroPage');
+  }
+  cadastrarAdministrador(){
+    this.navCtrl.setRoot('SignupPage');
   }
 }

@@ -13,5 +13,6 @@ perfil : string;
 cpf : string ;
 rg : string ;
 telefone : string ;
+ongId?: string;
 imageUrl? : string;
 }

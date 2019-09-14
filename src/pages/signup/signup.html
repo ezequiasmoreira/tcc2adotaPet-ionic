@@ -1,10 +1,19 @@
 <ion-header>
   <ion-navbar>
+    <button *ngIf="master || admin || voluntario" ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
     <ion-title>Cadastrar</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
+  <ion-item *ngIf="master">
+    <ion-label stacked>Ong*</ion-label>
+    <ion-select  [(ngModel)]="ongId" (ionChange)="updateOng(ongId)">
+      <ion-option *ngFor="let ong of ongs; first as o" [value]="ong.id" >{{ong.codigo}} - {{ong.nome_Fantasia}}</ion-option>
+    </ion-select>
+  </ion-item>
   <form [formGroup]="formGroup" (ngSubmit)="signupUser(); $event.preventDefault()">
     <ion-item>
       <ion-label stacked>Nome*</ion-label>
