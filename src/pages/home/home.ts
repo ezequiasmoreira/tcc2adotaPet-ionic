@@ -3,6 +3,8 @@ import { NavController, IonicPage } from 'ionic-angular';
 import { MenuController } from 'ionic-angular/components/app/menu-controller';
 import { CredenciaisDTO } from '../../models/credenciais.dto';
 import { AuthService } from '../../services/auth.service';
+import { MyApp } from '../../app/app.component';
+
 
 @IonicPage()
 @Component({
@@ -19,6 +21,7 @@ export class HomePage {
   constructor(
     public navCtrl: NavController, 
     public menu: MenuController,
+    public myApp: MyApp,
     public auth: AuthService) {
 
   }
@@ -46,7 +49,7 @@ export class HomePage {
         this.auth.successfulLogin(response.headers.get('Authorization'));
         if (localStorage.getItem('controlador') == null){
           localStorage.setItem('controlador','1');
-          window.location.reload(); 
+          this.myApp.iniciar();
         }
         this.navCtrl.setRoot('HomeFiltroPage');
       },

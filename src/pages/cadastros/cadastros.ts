@@ -70,4 +70,7 @@ export class CadastrosPage {
   cadastrarAdministrador(){
     this.navCtrl.setRoot('SignupPage');
   }
+  cadastrarVoluntario(){
+    this.navCtrl.setRoot('SignupPage');
+  }
 }

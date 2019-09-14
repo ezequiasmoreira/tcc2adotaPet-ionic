@@ -29,7 +29,7 @@ export class HomeFiltroPage {
     public navParams: NavParams) {
   }
 
-  ionViewDidLoad() {
+  ionViewDidLoad() {    
     this.racaService.findAll()
       .subscribe(response => {        
         this.racas = response;
