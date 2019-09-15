@@ -34,13 +34,6 @@
         <ion-option  value="3">Passáro</ion-option>
       </ion-select>
     </ion-item>
-
-    <ion-item>
-      <ion-label stacked>Animal*</ion-label>
-      <ion-select formControlName="animalId" >
-        <ion-option *ngFor="let animal of animais; first as f" [value]="animal.id">{{animal.nome}}</ion-option>
-      </ion-select>
-    </ion-item>
     
     <button ion-button block type="submit" [disabled]="formGroup.invalid">Cadatrar</button>
   </form>

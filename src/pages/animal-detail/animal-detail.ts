@@ -77,8 +77,18 @@ export class AnimalDetailPage {
   editar(animal_id : string) {
     this.navCtrl.push('AnimalEditarPage',{animal_id : animal_id});    
   }
-  addDoenca(animal_id : string) {
-    this.navCtrl.push('DoencaCadastroPage',{animal_id : animal_id});    
+
+  addDoenca(animal_id : string,
+     animal_nome: string) {
+    this.navCtrl.push('DoencaCadastroPage',{animal_id : animal_id, 
+      animal_nome : animal_nome});    
+  }
+
+  vincularVacina(animal_id : string,animal_nome: string, 
+    animalEspecie: string) {
+    this.navCtrl.push('VacinaVincularPage',{animal_id : animal_id, 
+      animal_nome : animal_nome, 
+      animalEspecie : animalEspecie});    
   }
 }
 

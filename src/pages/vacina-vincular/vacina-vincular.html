@@ -1,0 +1,24 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Vincular vacina</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-item>
+    <ion-label stacked>{{nome}}</ion-label>
+  </ion-item>
+  <ion-item>
+    <ion-label stacked>Vacina</ion-label>
+    <ion-select name="vacina" [(ngModel)]="id">
+      <ion-option *ngFor="let vacina of vacinas; first as a" [value]="vacina.id">{{vacina.id}} - {{vacina.nome}}</ion-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item >
+    <button ion-button block outline (click)="vincularVacina(id)">Vincular</button>
+  </ion-item>
+</ion-content>

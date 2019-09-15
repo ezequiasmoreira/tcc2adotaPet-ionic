@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { FormBuilder } from '@angular/forms';
-import { AnimalService } from '../../services/domain/animal.service';
 import { AlertController } from 'ionic-angular/components/alert/alert-controller';
 import { DoencaService } from '../../services/domain/doenca.service';
 import { DoencaDTO } from '../../models/doenca.dto';
@@ -20,24 +18,17 @@ export class DoencaCadastroPage {
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
-    public formBuilder: FormBuilder,
-    public animalService: AnimalService,
     public doencaService: DoencaService,
     public alertCtrl: AlertController,
   ) {
     this.animalId = this.navParams.get('animal_id');
+    this.nome = this.navParams.get('animal_nome');
   }
 
   ionViewDidLoad() {
     this.doencaService.findAll()
     .subscribe(response => {
       this.doencas = response;
-    },
-    error => {});
-
-    this.animalService.findById(this.animalId)
-    .subscribe(response => {
-      this.nome = response.nome;
     },
     error => {});
   }
