@@ -30,6 +30,7 @@ export class SignupPage {
   admin :string;
   master : string;
   voluntario : string;
+  editar : boolean = false;
   
 
   constructor(
@@ -44,6 +45,7 @@ export class SignupPage {
     public alertCtrl: AlertController
     ) {
       this.formGroup = this.formBuilder.group({
+        id: ['', []],
         nome: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(120)]],
         email: ['', [Validators.required, Validators.email]],
         sexo : ['1', [Validators.required]],
@@ -61,7 +63,8 @@ export class SignupPage {
       });
   }
 
-  ionViewDidLoad() {
+  ionViewDidLoad() { 
+    this.editar = this.navParams.get('origem');   
     let localUser = this.storage.getLocalUser();
     if (localUser && localUser.email) {
       this.pessoaService.findByEmail(localUser.email)
@@ -75,30 +78,38 @@ export class SignupPage {
             }
             if(this.pessoa.perfil == USUARIO_PERFIL.VOLUNTARIO){
               this.voluntario = this.pessoa.perfil;
-            }                                          
+            } 
+            if (this.editar == true){
+              this.popularTela(this.pessoa,localUser.email);
+            }                                         
         },
         error => { });
     }    
     this.estadoService.findAll()
       .subscribe(response => {
         this.estados = response;
-        this.formGroup.controls.estadoId.setValue(this.estados[0].id);
-        this.updateCidades();
+        if (!this.editar == true){
+          this.formGroup.controls.estadoId.setValue(this.pessoa.estadoId);
+        }
+        this.updateCidades(this.pessoa.cidadeId);
+        
       },
       error => {});
     this.ongService.findAll()
     .subscribe(response => {
       this.ongs = response;     
     },
-    error => {});
+    error => {});   
   }
 
-  updateCidades() {
+  updateCidades(cidadeId : string) {
     let estado_id = this.formGroup.value.estadoId;
     this.cidadeService.findAll(estado_id)
       .subscribe(response => {
         this.cidades = response;
-        this.formGroup.controls.cidadeId.setValue(null);
+        if (!this.editar == true){
+          this.formGroup.controls.cidadeId.setValue(cidadeId);
+        }
       },
       error => {});
   }
@@ -108,14 +119,37 @@ export class SignupPage {
     if (this.master == USUARIO_PERFIL.MASTER){
       this.pessoaNew.ongId = this.ongId;
     }
-    console.log(this.pessoaNew);
-    this.pessoaService.insert(this.pessoaNew)
+    if (this.editar == true){         
+      this.pessoaService.update(this.formGroup.value)
       .subscribe(response => {
-        this.showInsertOk();
+        console.log(this.formGroup.value);
+        this.showUpadateOk();
       },
-      error => {});
+      error => {});        
+    }else{      
+      this.pessoaService.insert(this.pessoaNew)
+        .subscribe(response => {
+          this.showInsertOk();
+        },
+        error => {});
+      }
   }
-  
+  popularTela(pessoa : PessoaDTO,email : string){    
+    this.formGroup.controls.id.setValue(pessoa.id);
+    this.formGroup.controls.nome.setValue(pessoa.nome);
+    this.formGroup.controls.email.setValue(email);
+    this.formGroup.controls.sexo.setValue(pessoa.sexo);
+    this.formGroup.controls.cpf.setValue(pessoa.cpf);
+    this.formGroup.controls.rg.setValue(pessoa.rg);
+    this.formGroup.controls.logradouro.setValue(pessoa.logradouro);
+    this.formGroup.controls.numero.setValue(pessoa.numero);
+    this.formGroup.controls.complemento.setValue(pessoa.complemento);
+    this.formGroup.controls.bairro.setValue(pessoa.bairro);
+    this.formGroup.controls.cep.setValue(pessoa.cep);
+    this.formGroup.controls.telefone.setValue(pessoa.telefone);
+    this.formGroup.controls.estadoId.setValue(pessoa.estadoId);
+    this.formGroup.controls.cidadeId.setValue(pessoa.cidadeId);
+  }
   showInsertOk() {
     let alert = this.alertCtrl.create({
       title: 'Sucesso!',
@@ -135,6 +169,29 @@ export class SignupPage {
         }
       ]
     });
+    
+    alert.present();
+  }
+  showUpadateOk() {
+    let alert = this.alertCtrl.create({
+      title: 'Sucesso!',
+      message: 'Atualizado com sucesso',
+      enableBackdropDismiss: false,
+      buttons: [
+        {
+          text: 'Ok',
+          handler: () => {
+            if (this.master == USUARIO_PERFIL.MASTER){
+              this.navCtrl.setRoot("SignupPage");
+            }else{
+              this.navCtrl.pop();
+            }
+            
+          }
+        }
+      ]
+    });
+    
     alert.present();
   }
   updateOng(ongId){

@@ -8,14 +8,15 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-item *ngIf="master">
+  <ion-item *ngIf="master">    
     <ion-label stacked>Ong*</ion-label>
     <ion-select  [(ngModel)]="ongId" (ionChange)="updateOng(ongId)">
       <ion-option *ngFor="let ong of ongs; first as o" [value]="ong.id" >{{ong.codigo}} - {{ong.nome_Fantasia}}</ion-option>
     </ion-select>
   </ion-item>
   <form [formGroup]="formGroup" (ngSubmit)="signupUser(); $event.preventDefault()">
-    <ion-item>
+      <ion-input formControlName="id" type="hidden"></ion-input>
+    <ion-item>      
       <ion-label stacked>Nome*</ion-label>
       <ion-input formControlName="nome" type="text"></ion-input>
     </ion-item>
@@ -86,9 +87,9 @@
     <ion-item>
       <ion-label stacked>Cidade*</ion-label>
       <ion-select formControlName="cidadeId">
-        <ion-option *ngFor="let cidade of cidades" [value]="cidade.id">{{cidade.nome}}</ion-option>
+        <ion-option *ngFor="let cidade of cidades; first as cid" [value]="cidade.id" [selected]="cid">{{cidade.nome}}</ion-option>
       </ion-select>
     </ion-item>
-    <button ion-button block type="submit" [disabled]="formGroup.invalid">Criar conta</button>
+    <button ion-button block type="submit" [disabled]="formGroup.invalid">Salvar</button>
   </form>
 </ion-content>

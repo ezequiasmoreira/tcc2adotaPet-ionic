@@ -108,4 +108,7 @@ export class ProfilePage {
   cancel() {
     this.picture = null;
   }
+  editar(){
+    this.navCtrl.push('SignupPage',{origem : true}); 
+  }
 }

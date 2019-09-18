@@ -7,6 +7,7 @@ complemento : string ;
 bairro : string ;
 cep : string ;
 cidadeId : string ;
+estadoId : string ;
 nome : string ;
 sexo : string;
 perfil : string;

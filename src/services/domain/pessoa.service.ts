@@ -35,6 +35,16 @@ export class PessoaService {
             }
         ); 
     }
+    update(obj : PessoaDTO) {
+        return this.http.put(
+            `${API_CONFIG.baseUrl}/pessoas/${obj.id}`, 
+            obj,
+            { 
+                observe: 'response', 
+                responseType: 'text'
+            }
+        ); 
+    }
     uploadPicture(picture) {
         let pictureBlob = this.imageUtilService.dataUriToBlob(picture);
         let formData : FormData = new FormData();

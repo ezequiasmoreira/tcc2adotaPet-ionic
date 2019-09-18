@@ -38,7 +38,6 @@ export class MyApp {
         .subscribe(response => {
           this.pessoa = response;
           this.isAuthorized(this.pessoa.perfil);
-          console.log(this.pessoa);
         },
         error => { });
     }
@@ -46,10 +45,10 @@ export class MyApp {
   isAuthorized(perfil :string){
     if ( perfil == USUARIO_PERFIL.USUARIO ){
       this.pages = [
-        { title: 'Perfil', component: 'ProfilePage' },
-        { title: 'Raças', component: 'RacasPage' },
         { title: 'Animais', component: 'HomeFiltroPage' },
         { title: 'Minhas adoções', component: 'MyAdocoesPage' },
+        { title: 'Perfil', component: 'ProfilePage' },
+        { title: 'Raças', component: 'RacasPage' },        
         { title: 'Sair', component: ''}
       ];
     }else if(perfil == USUARIO_PERFIL.VOLUNTARIO){
@@ -83,15 +82,12 @@ export class MyApp {
         { title: 'Solicitação de adoções', component: 'AdocoesSolicitacaoPage' },
         { title: 'Cadastros', component: 'CadastrosPage' },
         { title: 'Adoções', component: 'AdocoesPainelPage' },
-        { title: 'listagem', component: 'OngListagemPage' },
         { title: 'Sair', component: ''}
       ];    
     }
   }
   initializeApp() {
     this.platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();     
     });

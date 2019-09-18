@@ -40,7 +40,7 @@ export class MyAdocoesPage {
   }
   getDescricaoStatus(status : string){
     if (status == ADOCAO_STATUS.AGUARDANDO){
-      return "Aguardado analise";
+      return "Aguardando análise";
     }
     if (status == ADOCAO_STATUS.ANALISE){
       return "Em analise";
