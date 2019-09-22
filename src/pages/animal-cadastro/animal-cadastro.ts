@@ -2,9 +2,11 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AnimalService } from '../../services/domain/animal.service';
 import { RacaDTO } from '../../models/raca.dto';
+import { AnimalDTO } from '../../models/animal.dto';
 import { RacaService } from '../../services/domain/raca.service';
 import { AlertController } from 'ionic-angular/components/alert/alert-controller';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Camera,CameraOptions } from '@ionic-native/camera';
 
 
 @IonicPage()
@@ -16,13 +18,16 @@ export class AnimalCadastroPage {
 
   formGroup: FormGroup;
   racas: RacaDTO[];
+  cameraOn: boolean = false;
+  picture: string;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public formBuilder: FormBuilder,
     public animalService: AnimalService,
     public racaService: RacaService,
-    public alertCtrl: AlertController
+    public alertCtrl: AlertController,
+    public camera: Camera
   ) {
       this.formGroup = this.formBuilder.group({
         nome: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(120)]],
@@ -47,8 +52,11 @@ export class AnimalCadastroPage {
   addAnimal() {
     this.animalService.adicionaAnimal(this.formGroup.value)
       .subscribe(response => {
+        console.log(response.body);
+        let animalNovo : AnimalDTO = JSON.parse(response.body);
+        this.sendPicture(animalNovo.id);
         this.showInsertOk();
-        this.navCtrl.push('RacasPage');
+        
       },
         error => { });
   }
@@ -62,12 +70,62 @@ export class AnimalCadastroPage {
         {
           text: 'Ok',
           handler: () => {
-            this.navCtrl.pop();
+            this.navCtrl.setRoot('RacasPage');
           }
         }
       ]
     });
     alert.present();
+  }
+
+  getCameraPicture() {
+
+    this.cameraOn = true;
+
+    const options: CameraOptions = {
+      quality: 100,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.PNG,
+      mediaType: this.camera.MediaType.PICTURE
+    }
+    
+    this.camera.getPicture(options).then((imageData) => {
+     this.picture = 'data:image/png;base64,' + imageData;
+     this.cameraOn = false;
+    }, (err) => {
+      this.cameraOn = false;
+    });
+  }
+
+  getGalleryPicture() {
+
+    this.cameraOn = true;
+
+    const options: CameraOptions = {
+      quality: 100,
+      sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.PNG,
+      mediaType: this.camera.MediaType.PICTURE
+    }
+    
+    this.camera.getPicture(options).then((imageData) => {
+     this.picture = 'data:image/png;base64,' + imageData;
+     this.cameraOn = false;
+    }, (err) => {
+      this.cameraOn = false;
+    });
+  }
+
+  sendPicture(id) {
+    if(this.picture != undefined){
+      this.animalService.uploadPicture(this.picture, id)
+      .subscribe(response => {
+        this.picture = null;
+      },
+      error => {
+      });
+    }
   }
 
 }

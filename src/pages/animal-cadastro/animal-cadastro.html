@@ -84,6 +84,16 @@
         <ion-option *ngFor="let raca of racas; first as f" [value]="raca.id" [selected]="f">{{raca.descricao}}</ion-option>
       </ion-select>
     </ion-item>
+
+    
+    <ion-item *ngIf="picture">
+      <img [src]="picture">
+    </ion-item>
+    <ion-item>
+      <button ion-button block (click)="getCameraPicture()" [disabled]="cameraOn">Camera</button>
+      <button ion-button block (click)="getGalleryPicture()" [disabled]="cameraOn">Galeria</button>
+    </ion-item>
+   
    
     <button ion-button block type="submit" [disabled]="formGroup.invalid">Cadastrar</button>
   </form>

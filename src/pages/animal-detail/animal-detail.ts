@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AnimalDTO } from '../../models/animal.dto';
 import { AnimalService } from '../../services/domain/animal.service';
-import { API_CONFIG } from '../../config/api.config';
+import { API_CONFIG, NEW_API_CONFIG } from '../../config/api.config';
 import { StorageService } from '../../services/storage.service';
 import { PessoaService } from '../../services/domain/pessoa.service';
 import { PessoaDTO } from '../../models/pessoa.dto';
@@ -63,11 +63,7 @@ export class AnimalDetailPage {
   }
 
   getImageUrlIfExists() {
-    this.animalService.getImageFromBucket(this.item.id)
-      .subscribe(response => {
-        this.item.imageUrl = `${API_CONFIG.imageBaseUrl}/animais/an${this.item.id}.jpg`;
-      },
-      error => {});
+    this.item.imageUrl = `${NEW_API_CONFIG.baseUrl}/animal/an${this.item.id}.jpg`;
   }
   
   adotar(animal_id : string) {
