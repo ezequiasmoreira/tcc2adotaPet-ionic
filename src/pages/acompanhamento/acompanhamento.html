@@ -9,7 +9,9 @@
 
 
 <ion-content padding>
-
+    <ion-item >
+        <button ion-button block outline (click)="pesquisar()">Pesquisar</button>
+      </ion-item>
   <ion-item>
     <ion-label stacked>Descrição:</ion-label>
     <ion-input name="descricao" [(ngModel)]="descricao" type="text"></ion-input>

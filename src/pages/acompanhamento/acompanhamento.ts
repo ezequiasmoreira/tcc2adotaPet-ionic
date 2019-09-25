@@ -64,6 +64,9 @@ export class AcompanhamentoPage {
     });
     alert.present();
   }
+  pesquisar(){
+    
+  }
 
 
 

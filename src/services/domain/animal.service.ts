@@ -27,8 +27,6 @@ export class AnimalService {
     }
     
     adicionaAnimal(obj : AnimalDTO) {
-        obj.ongId = '1';
-        obj.codigo = '1';
         return this.http.post(
             `${API_CONFIG.baseUrl}/animais`, 
             obj,

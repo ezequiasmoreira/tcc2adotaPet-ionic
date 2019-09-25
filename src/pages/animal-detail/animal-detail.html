@@ -18,17 +18,17 @@
       Cód: {{item?.codigo}}
       </p>
       <p>
-      Genero: {{item?.genero ==1 ? "Macho":"Femea"}}
+      Gênero: {{item?.genero ==1 ? "Macho":"Femea"}}
       </p>
       <p>
       Raça: {{item?.raca.descricao}}
       </p>
       <p>
-      Ong: {{item?.ong.nome_Fantasia}}
+      ONG: {{item?.ong.nome_Fantasia}}
       </p>
       <br>
       <b>
-        Vacinas:
+      Vacinas:
       </b>
       <span  m *ngFor="let vacina of item?.vacinas">
         <p>Nome: {{vacina.vacina.nome}}</p>
