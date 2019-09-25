@@ -61,4 +61,8 @@ export class AcompanhamentoService {
         }
         return true;    
     }
+    findByFilter(parametros) { 
+      return this.http.get<AcompanhamentoDTO[]>(
+          `${API_CONFIG.baseUrl}/acompanhamentos/pesquisar?status=${parametros.status}&animalId=${parametros.animalId}`);
+    }
 }

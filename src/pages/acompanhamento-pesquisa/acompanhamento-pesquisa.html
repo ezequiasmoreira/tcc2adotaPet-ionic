@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Pesquisar acompanhamento</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-item>
+    <ion-label stacked>Status</ion-label>
+    <ion-select Name="status" [(ngModel)]="status">
+        <ion-option [value]="0" [selected]="true">Selecione</ion-option>
+        <ion-option [value]="1">Aberto</ion-option>
+        <ion-option [value]="2">Agendado</ion-option>
+        <ion-option [value]="3">Solicitado</ion-option>
+        <ion-option [value]="4">Finalizado</ion-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label stacked>Animal</ion-label>
+    <ion-select Name="animalId" [(ngModel)]="animalId" >
+      <ion-option [value]="0" [selected]="true">Selecione</ion-option>
+      <ion-option *ngFor="let animal of animais" [value]="animal.id">{{animal.nome}}</ion-option>
+    </ion-select>
+  </ion-item>
+
+
+  <ion-item >
+    <button ion-button block outline (click)="pesquisar(status,animalId)">Pesquisar</button>
+  </ion-item>
+</ion-content>
