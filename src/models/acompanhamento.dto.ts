@@ -6,4 +6,5 @@ export interface AcompanhamentoDTO {
     status? : string;
     situacao? : string;
     animal? : string;
+    imageUrl?: string;
 }

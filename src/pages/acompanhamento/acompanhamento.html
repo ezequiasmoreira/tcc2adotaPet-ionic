@@ -54,6 +54,14 @@
     </ion-select>
   </ion-item>
 
+  <ion-item *ngIf="picture">
+    <img [src]="picture">
+  </ion-item>
+  <ion-item>
+    <button ion-button block (click)="getCameraPicture()" [disabled]="cameraOn">Camera</button>
+    <button ion-button block (click)="getGalleryPicture()" [disabled]="cameraOn">Galeria</button>
+  </ion-item>
+
   <ion-item >
     <button ion-button block outline (click)="cadastrar(descricao,observacao,dataAgendado,
     status,situacao,animalId)">Cadastrar</button>

@@ -1,12 +1,22 @@
 <ion-header>
-
-  <ion-navbar>
-    <ion-title>acompanhamento-listagem</ion-title>
-  </ion-navbar>
-
-</ion-header>
-
-
-<ion-content padding>
-
-</ion-content>
+    <ion-navbar>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>Acompanhamentos</ion-title>
+    </ion-navbar>
+  </ion-header>
+  
+  <ion-content padding>
+    <ion-list>
+      <button ion-item *ngFor="let item of items" (click)="showDetail(item.id)">
+        <ion-thumbnail item-start>
+          <img [src]="item.imageUrl || 'http://localhost:8800/img/acompanhamento/no-image.jpg'">
+        </ion-thumbnail>
+        <p>Descrição: {{item.descricao}}</p>
+        <p>Observação: {{item.observacao}}</p>
+        <p>Cadastrado: {{item.dataCadastro}}</p>
+        <p>Agendado: {{item.dataAgendado}}</p>
+      </button>
+    </ion-list>
+  </ion-content>

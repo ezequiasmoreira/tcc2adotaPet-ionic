@@ -36,7 +36,7 @@ export class AcompanhamentoPesquisaPage {
     this.acompanhamentoService.findByFilter(parametros)
     .subscribe(response => {
       console.log(response);
-      this.navCtrl.push('AcompanhamentoListagemPage',{parametros : response, origem : 'acopanhamentoFiltro'});  
+      this.navCtrl.push('AcompanhamentoListagemPage',{parametros : response, origem : 'acompanhamentoFiltro'});  
     },
     error => {});
     

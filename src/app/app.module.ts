@@ -24,6 +24,7 @@ import { PipesModule } from '../pipes/pipes.module';
 import { EstadoService } from '../services/domain/estado.service';
 import { CidadeService } from '../services/domain/cidade.service';
 import { OngService } from '../services/domain/ong.service';
+import { Camera } from '@ionic-native/camera';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { OngService } from '../services/domain/ong.service';
     AcompanhamentoService,
     EstadoService,
     CidadeService,
-    OngService
+    OngService,
+    Camera
   ]
 })
 export class AppModule {}

@@ -1,7 +1,8 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs/Rx";
-import { API_CONFIG } from "../../config/api.config";
+import { API_CONFIG, NEW_API_CONFIG } from "../../config/api.config";
+import { ImageUtilService } from "../image-util.service";
 import { AlertController } from "ionic-angular/components/alert/alert-controller";
 import { AcompanhamentoDTO } from "../../models/acompanhamento.dto";
 
@@ -11,7 +12,8 @@ export class AcompanhamentoService {
 
     constructor(
         public http: HttpClient,
-        public alertCtrl: AlertController) {
+        public alertCtrl: AlertController,
+        public imageUtilService: ImageUtilService) {
     }
     insert(obj : AcompanhamentoDTO) {
         return this.http.post(
@@ -31,6 +33,9 @@ export class AcompanhamentoService {
             if (campo == "descricao"){
               campo = "descrição";
             } 
+            if (campo == "imageUrl"){
+              campo = "imagem";
+            } 
             if(campo == "observacao"){
               campo = "observação";
             }        
@@ -42,7 +47,6 @@ export class AcompanhamentoService {
             }
             mensagem += (campo != "") ? campo+"," : "";
           }
-          console.log(campo + " = " + acompanhamentoDTO[campo]);
         }
     
         if (mensagem != ""){
@@ -61,8 +65,23 @@ export class AcompanhamentoService {
         }
         return true;    
     }
+
     findByFilter(parametros) { 
       return this.http.get<AcompanhamentoDTO[]>(
           `${API_CONFIG.baseUrl}/acompanhamentos/pesquisar?status=${parametros.status}&animalId=${parametros.animalId}`);
     }
+
+    uploadPicture(picture, id) {
+      let pictureBlob = this.imageUtilService.dataUriToBlob(picture);
+      let formData : FormData = new FormData();
+      formData.append('file', pictureBlob, 'file.png');
+      return this.http.post(
+          `${API_CONFIG.baseUrl}/acompanhamentos/picture/${id}`, 
+          formData,
+          { 
+              observe: 'response', 
+              responseType: 'text'
+          }
+      ); 
+  }
 }
