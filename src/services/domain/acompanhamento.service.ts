@@ -83,5 +83,18 @@ export class AcompanhamentoService {
               responseType: 'text'
           }
       ); 
+    }
+    getAcompanhamentoById(acompanhamento_id : string){
+      return this.http.get<AcompanhamentoDTO>(`${API_CONFIG.baseUrl}/acompanhamentos/${acompanhamento_id}`);
+    }
+    atualizaAcompanhamento(obj : AcompanhamentoDTO) {
+      return this.http.put(
+          `${API_CONFIG.baseUrl}/acompanhamentos/${obj.id}`, 
+          obj,
+          { 
+              observe: 'response', 
+              responseType: 'text'
+          }
+      );
   }
 }

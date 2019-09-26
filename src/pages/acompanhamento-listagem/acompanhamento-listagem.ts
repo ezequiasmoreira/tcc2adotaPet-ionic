@@ -34,5 +34,8 @@ export class AcompanhamentoListagemPage {
       
     }
   }
+  showDetail(acompanhamento_id : string) {
+    this.navCtrl.push('AcompanhamentoDetalhesPage', {acompanhamento_id: acompanhamento_id});
+  }
 
 }

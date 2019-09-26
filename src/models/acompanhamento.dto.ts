@@ -1,5 +1,6 @@
 export interface AcompanhamentoDTO {
     id? : string;
+    codigo? : string;
     descricao? : string;
     observacao? : string;
     dataAgendado? : string;

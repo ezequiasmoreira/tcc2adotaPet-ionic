@@ -31,7 +31,7 @@ export class ErrorInterceptor implements HttpInterceptor {
                 this.handle401();
                 break;
                 case 403:
-                this.handle403();
+                this.handle403(errorObj);
                 break;
             
                 case 422:
@@ -46,7 +46,8 @@ export class ErrorInterceptor implements HttpInterceptor {
         }) as any;
     }
 
-    handle403() {
+    handle403(errorObj) {
+        this.erro403(errorObj);
         //this.storage.setLocalUser(null);
     }
 
@@ -99,6 +100,21 @@ export class ErrorInterceptor implements HttpInterceptor {
         }
         return s;
     }
+
+    erro403(errorObj) {
+        let alert = this.alertCtrl.create({
+            title: 'Não permitido',
+            message: errorObj.message,
+            enableBackdropDismiss: false,
+            buttons: [
+                {
+                    text: 'Ok'
+                }
+            ]
+        });
+        alert.present();        
+    }
+
 }
 
 export const ErrorInterceptorProvider = {
