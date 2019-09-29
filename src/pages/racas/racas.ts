@@ -2,14 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { RacaService } from '../../services/domain/raca.service';
 import { RacaDTO } from '../../models/raca.dto';
-import { API_CONFIG } from '../../config/api.config';
-
-/**
- * Generated class for the RacasPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { API_CONFIG, NEW_API_CONFIG } from '../../config/api.config';
 
 @IonicPage()
 @Component({
@@ -18,7 +11,7 @@ import { API_CONFIG } from '../../config/api.config';
 })
 export class RacasPage {
 
-  ImageUrl: string = API_CONFIG.imageBaseUrl+"/racas";
+  ImageUrl: string = NEW_API_CONFIG.baseUrl+"/raca";
 
   items: RacaDTO[];
   column: string = 'descricao';
