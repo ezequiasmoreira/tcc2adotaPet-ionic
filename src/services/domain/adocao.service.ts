@@ -26,6 +26,9 @@ export class AdocaoService {
     getAdocoesUser() : Observable<AdocaolDTO[]>  {
         return this.http.get<AdocaolDTO[]>(`${API_CONFIG.baseUrl}/adocoes`);
     }
+    obterAdocoesConcluida() : Observable<AdocaolDTO[]>  {
+        return this.http.get<AdocaolDTO[]>(`${API_CONFIG.baseUrl}/adocoes/concluida`);
+    }
     getAdocoesPorOng() : Observable<AdocaolDTO[]>  {
         return this.http.get<AdocaolDTO[]>(`${API_CONFIG.baseUrl}/adocoes/solicitacao`);
     }

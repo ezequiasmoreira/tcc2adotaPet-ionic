@@ -73,7 +73,10 @@ export class AcompanhamentoPage {
     alert.present();
   }
   pesquisar(){
-    
+    this.navCtrl.setRoot('AcompanhamentoPesquisaPage');
+  }
+  solicitarAcompanhamento(){
+    this.navCtrl.setRoot('SolicitarAcompanhamentoPage');
   }
   getCameraPicture() {
 

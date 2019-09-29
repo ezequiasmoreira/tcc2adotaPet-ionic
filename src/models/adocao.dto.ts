@@ -1,4 +1,5 @@
 import { AnimalDTO } from "./animal.dto";
+import { PessoaDTO } from "./pessoa.dto";
 
 export interface AdocaolDTO {
     id : string;
@@ -6,10 +7,10 @@ export interface AdocaolDTO {
 	dataCadastro : string;	
     dataFinalizacao? : string;
     status : string;
-	pessoaInterressado : string;
 	pessoaIntermediador? : string;
 	observacao : string;
 	ongId? : string;
 	animal : AnimalDTO;
+	pessoaInterressado? : PessoaDTO;
 }
     
