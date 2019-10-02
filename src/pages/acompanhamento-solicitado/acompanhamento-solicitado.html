@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Solicitação de acompanhamentos</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <button ion-item *ngFor="let item of items" (click)="gerarAcompanhamento(item.id)">
+      <ion-thumbnail item-start>
+          <img [src]="'http://localhost:8800/animal/an'+item?.animal+'.jpg'">
+      </ion-thumbnail>
+      <b>Olá</b>
+      <p>Nos conte um pouco</p>
+      <p>sobre esta adoção</p>
+    </button>
+  </ion-list>
+</ion-content>

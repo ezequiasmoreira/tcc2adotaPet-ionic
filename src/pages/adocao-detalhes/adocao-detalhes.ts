@@ -5,13 +5,6 @@ import { AdocaolDTO } from '../../models/adocao.dto';
 import { API_CONFIG } from '../../config/api.config';
 import { ADOCAO_STATUS } from '../../models/adocao-status';
 
-/**
- * Generated class for the AdocaoDetalhesPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
   selector: 'page-adocao-detalhes',

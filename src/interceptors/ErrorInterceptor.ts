@@ -47,7 +47,6 @@ export class ErrorInterceptor implements HttpInterceptor {
     }
 
     handle403(errorObj) {
-        //this.erro403(errorObj);
         //this.storage.setLocalUser(null);
     }
 
@@ -101,19 +100,7 @@ export class ErrorInterceptor implements HttpInterceptor {
         return s;
     }
 
-    erro403(errorObj) {
-        let alert = this.alertCtrl.create({
-            title: 'Não permitido',
-            message: errorObj.message,
-            enableBackdropDismiss: false,
-            buttons: [
-                {
-                    text: 'Ok'
-                }
-            ]
-        });
-        alert.present();        
-    }
+    
 
 }
 

@@ -2,16 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { PessoaService } from '../../services/domain/pessoa.service';
 import { PessoaDTO } from '../../models/pessoa.dto';
-import { AuthService } from '../../services/auth.service';
 import { StorageService } from '../../services/storage.service';
 import { USUARIO_PERFIL } from '../../config/perfil';
-
-/**
- * Generated class for the CadastrosPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({

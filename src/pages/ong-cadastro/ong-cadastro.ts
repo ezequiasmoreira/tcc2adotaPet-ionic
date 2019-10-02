@@ -5,7 +5,6 @@ import { CidadeService } from '../../services/domain/cidade.service';
 import { EstadoService } from '../../services/domain/estado.service';
 import { EstadoDTO } from '../../models/estado.dto';
 import { CidadeDTO } from '../../models/cidade.dto';
-import { PessoaService } from '../../services/domain/pessoa.service';
 import { AlertController } from 'ionic-angular/components/alert/alert-controller';
 import { OngService } from '../../services/domain/ong.service';
 import { OngDTO } from '../../models/ong.dto';

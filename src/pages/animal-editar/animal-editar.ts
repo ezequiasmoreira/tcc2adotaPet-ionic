@@ -5,7 +5,7 @@ import { RacaDTO } from '../../models/raca.dto';
 import { AnimalDTO } from '../../models/animal.dto';
 import { RacaService } from '../../services/domain/raca.service';
 import { AlertController } from 'ionic-angular/components/alert/alert-controller';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 
 
 @IonicPage()

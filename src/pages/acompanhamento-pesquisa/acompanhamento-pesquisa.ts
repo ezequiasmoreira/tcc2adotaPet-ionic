@@ -21,7 +21,7 @@ export class AcompanhamentoPesquisaPage {
   }
 
   ionViewDidLoad() {
-    this.animalService.findAll("1")
+    this.animalService.findAll("10")
       .subscribe(response => {
         this.animais = response;
       },

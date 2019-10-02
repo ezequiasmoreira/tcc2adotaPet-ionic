@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AdocaoService } from '../../services/domain/adocao.service';
 import { AdocaolDTO } from '../../models/adocao.dto';
-import { API_CONFIG } from '../../config/api.config';
 import { ADOCAO_STATUS } from '../../models/adocao-status';
 
 

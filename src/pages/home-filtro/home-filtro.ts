@@ -59,7 +59,7 @@ export class HomeFiltroPage {
       "genero" : genero == undefined ? "0" : genero,
       "porte" : porte == undefined ? "0" : porte,
       "castrado" : castrado  == undefined ? "0" : castrado,
-      "estadoId" : estadoId == undefined ? "1" : estadoId,
+      "estadoId" : estadoId == undefined ? "0" : estadoId,
       "cidadeId" : cidadeId == undefined ? "0" : cidadeId,
       "racaId" : racaId == undefined ? "0" : racaId,
     }

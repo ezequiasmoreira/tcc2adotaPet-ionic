@@ -9,11 +9,6 @@
 
 <ion-content padding>
   <ion-item>
-      <ion-label stacked>Nome</ion-label>
-      <ion-input name="nome" [(ngModel)]="nome" type="text"></ion-input>
-  </ion-item>
-
-  <ion-item>
     <ion-label stacked>Genero</ion-label>
     <ion-select Name="genero" [(ngModel)]="genero">
         <ion-option [value]="0" [selected]="true">Selecione</ion-option>
@@ -43,7 +38,7 @@
   <ion-item>
     <ion-label stacked>Estado</ion-label>
     <ion-select Name="estadoId" [(ngModel)]="estadoId" (ionChange)="updateCidades(estadoId)">
-      <ion-option *ngFor="let estado of estados; first as f" [value]="estado.id" [selected]="f">{{estado.nome}}</ion-option>
+      <ion-option *ngFor="let estado of estados" [value]="estado.id" >{{estado.nome}}</ion-option>
     </ion-select>
   </ion-item>
 

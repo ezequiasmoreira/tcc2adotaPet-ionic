@@ -48,7 +48,8 @@ export class MyApp {
         { title: 'Animais', component: 'HomeFiltroPage' },
         { title: 'Minhas adoções', component: 'MyAdocoesPage' },
         { title: 'Perfil', component: 'ProfilePage' },
-        { title: 'Raças', component: 'RacasPage' },        
+        { title: 'Raças', component: 'RacasPage' },
+        { title: 'Solicitação de acompanhamento', component: 'AcompanhamentoSolicitadoPage'},     
         { title: 'Sair', component: ''}
       ];
     }else if(perfil == USUARIO_PERFIL.VOLUNTARIO){

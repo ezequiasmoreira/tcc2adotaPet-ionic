@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AnimalDTO } from '../../models/animal.dto';
 import { AnimalService } from '../../services/domain/animal.service';
-import { API_CONFIG, NEW_API_CONFIG } from '../../config/api.config';
+import { NEW_API_CONFIG } from '../../config/api.config';
 
 @IonicPage()
 @Component({

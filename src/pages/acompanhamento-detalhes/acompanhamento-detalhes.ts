@@ -4,7 +4,8 @@ import { AcompanhamentoService } from '../../services/domain/acompanhamento.serv
 import { NEW_API_CONFIG } from '../../config/api.config';
 import { AcompanhamentoDTO } from '../../models/acompanhamento.dto';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { AnimalDTO } from '../../models/animal.dto';
+import { Camera,CameraOptions } from '@ionic-native/camera';
+import { AlertController } from 'ionic-angular/components/alert/alert-controller';
 
 
 @IonicPage()
@@ -17,11 +18,16 @@ export class AcompanhamentoDetalhesPage {
   item: AcompanhamentoDTO;
   formGroup: FormGroup;
   caminho : string;
+  alterar : boolean = false;
+  cameraOn: boolean = false;
+  picture: string;
 
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
     public formBuilder: FormBuilder,
+    public camera: Camera,
+    public alertCtrl: AlertController,
     public acompanhamentoService: AcompanhamentoService) {
       this.formGroup = this.formBuilder.group({
         id: ['', []],
@@ -36,6 +42,13 @@ export class AcompanhamentoDetalhesPage {
   }
 
   ionViewDidLoad() {
+    let origem = this.navParams.get('origem');
+    if(origem == 'usuario'){
+      this.alterar = true;
+    }else{
+      this.alterar = false;
+    }
+    console.log("alterar"+this.alterar)
     let acompanhamento_id = this.navParams.get('acompanhamento_id');
     this.acompanhamentoService.getAcompanhamentoById(acompanhamento_id)
       .subscribe(response => {
@@ -49,9 +62,11 @@ export class AcompanhamentoDetalhesPage {
         this.formGroup.controls.observacao.setValue(this.item.observacao);
         if (this.item.dataAgendado != null){
           this.formGroup.controls.dataAgendado.setValue(this.converterData(this.item.dataAgendado));
-        }        
-        this.item = response;
-        this.caminho = NEW_API_CONFIG.imageBaseUrl +"/acompanhamento/acomp"; 
+        }  
+        if(this.item.descricao != undefined) {
+          this.caminho = `${NEW_API_CONFIG.baseUrl}/acompanhamento/acomp${this.item.id}.jpg`;
+        }      
+        this.item = response; 
       },
       error => {});
   }
@@ -70,12 +85,88 @@ export class AcompanhamentoDetalhesPage {
     return dia + '/' + (mes) + '/' + ano;
   }
   salvar(){
-    this.formGroup.value.dataAgendado =this.converterDataBrasil(this.formGroup.value.dataAgendado.replace(/-/g,'/'));
+    if(this.formGroup.value.dataAgendado != undefined){
+      this.formGroup.value.dataAgendado =this.converterDataBrasil(this.formGroup.value.dataAgendado.replace(/-/g,'/'));
+    }    
     this.acompanhamentoService.atualizaAcompanhamento(this.formGroup.value)
     .subscribe(response => {   
-      this.navCtrl.setRoot("AcompanhamentoPesquisaPage");
+      let origem = this.navParams.get('origem');
+      if(origem == 'usuario'){
+        this.sendPicture(this.formGroup.value.id);
+        this.navCtrl.setRoot('AcompanhamentoSolicitadoPage')
+      }else{
+        this.navCtrl.setRoot("AcompanhamentoPesquisaPage");
+      }
+      
     },
-    error => {});
+    error => {
+     this.erro(error)
+    });
+  }
+  getCameraPicture() {
+
+    this.cameraOn = true;
+
+    const options: CameraOptions = {
+      quality: 100,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.PNG,
+      mediaType: this.camera.MediaType.PICTURE
+    }
+    
+    this.camera.getPicture(options).then((imageData) => {
+     this.picture = 'data:image/png;base64,' + imageData;
+     this.cameraOn = false;
+    }, (err) => {
+      this.cameraOn = false;
+    });
+  }
+
+  getGalleryPicture() {
+
+    this.cameraOn = true;
+
+    const options: CameraOptions = {
+      quality: 100,
+      sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.PNG,
+      mediaType: this.camera.MediaType.PICTURE
+    }
+    
+    this.camera.getPicture(options).then((imageData) => {
+     this.picture = 'data:image/png;base64,' + imageData;
+     this.cameraOn = false;
+    }, (err) => {
+      this.cameraOn = false;
+    });
+  }
+
+  sendPicture(id) {
+    if(this.picture != undefined){
+      this.acompanhamentoService.uploadPicture(this.picture, id)
+      .subscribe(response => {
+        this.picture = null;
+      },
+      error => {
+      });
+    }
+  }
+  cancel() {
+    this.picture = null;
+  }
+  erro(errorObj) {
+    let alert = this.alertCtrl.create({
+        title: 'Não permitido',
+        message: errorObj.message,
+        enableBackdropDismiss: false,
+        buttons: [
+            {
+                text: 'Ok'
+            }
+        ]
+    });
+    alert.present();  
   }
 
 }

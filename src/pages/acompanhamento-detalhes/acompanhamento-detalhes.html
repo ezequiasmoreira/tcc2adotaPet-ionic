@@ -27,7 +27,7 @@
     
     <ion-item>
       <ion-label stacked>Status</ion-label>
-      <ion-select Name="status" formControlName="status" [(ngModel)]="status">
+      <ion-select Name="status" formControlName="status" [(ngModel)]="status" [disabled]="alterar">
           <ion-option [value]="1">Aberto</ion-option>
           <ion-option [value]="2">Agendado</ion-option>
           <ion-option [value]="3">Solicitado</ion-option>
@@ -38,7 +38,7 @@
     
     <ion-item>
       <ion-label stacked>Situação</ion-label>
-      <ion-select Name="situacao" formControlName="situacao" [(ngModel)]="situacao">
+      <ion-select Name="situacao" formControlName="situacao" [(ngModel)]="situacao" [disabled]="alterar">
           <ion-option [value]="1">Otimo</ion-option>
           <ion-option [value]="2">Bom</ion-option>
           <ion-option [value]="3">Regular</ion-option>
@@ -55,9 +55,18 @@
 
     <ion-item>
       <ion-label stacked>Agendado:</ion-label>
-      <ion-datetime displayFormat="DD MM YYYY" name="dataAgendado" formControlName="dataAgendado"  [(ngModel)]="dataAgendado"></ion-datetime> 
+      <ion-datetime displayFormat="DD MM YYYY" name="dataAgendado" formControlName="dataAgendado"  [(ngModel)]="dataAgendado" [disabled]="alterar"></ion-datetime> 
     </ion-item>
-    
+    <ion-item *ngIf="picture">
+      <img [src]="picture">
+    </ion-item>
+    <ion-item *ngIf="caminho && !picture">
+      <img [src]="caminho">
+    </ion-item>
+    <ion-item>
+      <button ion-button block (click)="getCameraPicture()" [disabled]="cameraOn">Camera</button>
+      <button ion-button block (click)="getGalleryPicture()" [disabled]="cameraOn">Galeria</button>
+    </ion-item>
     <button ion-button block type="submit" [disabled]="formGroup.invalid">Salvar</button>
   </form>
 </ion-content>

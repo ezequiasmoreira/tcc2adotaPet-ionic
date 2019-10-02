@@ -25,6 +25,15 @@ export class AcompanhamentoService {
             }
         ); 
     }
+    solicitarAcompanhamento(adocao_id : string) {
+      return this.http.post(
+          `${API_CONFIG.baseUrl}/acompanhamentos/solicitar/` + adocao_id,null,
+          { 
+              observe: 'response', 
+              responseType: 'text'
+          }
+      ); 
+  }
     validarCampos(acompanhamentoDTO : AcompanhamentoDTO){
         let mensagem = "";
     
@@ -86,6 +95,9 @@ export class AcompanhamentoService {
     }
     getAcompanhamentoById(acompanhamento_id : string){
       return this.http.get<AcompanhamentoDTO>(`${API_CONFIG.baseUrl}/acompanhamentos/${acompanhamento_id}`);
+    }
+    solicitado() : Observable<AcompanhamentoDTO[]>  {
+      return this.http.get<AcompanhamentoDTO[]>(`${API_CONFIG.baseUrl}/acompanhamentos/solicitado`);
     }
     atualizaAcompanhamento(obj : AcompanhamentoDTO) {
       return this.http.put(

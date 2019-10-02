@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
 import { AnimalService } from '../../services/domain/animal.service';
 import { AnimalDTO } from '../../models/animal.dto';
-import { API_CONFIG, NEW_API_CONFIG } from '../../config/api.config';
+import { NEW_API_CONFIG } from '../../config/api.config';
 import { AdocaoService } from '../../services/domain/adocao.service';
 import { StorageService } from '../../services/storage.service';
 
@@ -13,7 +13,6 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
 import { File } from '@ionic-native/file/ngx';
 import { FileOpener } from '@ionic-native/file-opener/ngx';
 import { PessoaService } from '../../services/domain/pessoa.service';
-import { PessoaDTO } from '../../models/pessoa.dto';
 
 @IonicPage()
 @Component({
