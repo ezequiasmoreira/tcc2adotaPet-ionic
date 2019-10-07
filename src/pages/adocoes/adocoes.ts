@@ -154,7 +154,8 @@ export class AdocoesPage {
   }
 
   downloadPdf() {
-    if (this.plt.is('cordova')) {
+    this.pdfObj.download();
+    /*if (this.plt.is('cordova')) {
       this.pdfObj.getBuffer((buffer) => {
         var blob = new Blob([buffer], { type: 'application/pdf' });
  
@@ -167,7 +168,7 @@ export class AdocoesPage {
     } else {
       // On a browser simply use download!
       this.pdfObj.download();
-    }
+    }*/
   }
 
 }
