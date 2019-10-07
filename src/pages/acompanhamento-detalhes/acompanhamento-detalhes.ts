@@ -6,6 +6,7 @@ import { AcompanhamentoDTO } from '../../models/acompanhamento.dto';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Camera,CameraOptions } from '@ionic-native/camera';
 import { AlertController } from 'ionic-angular/components/alert/alert-controller';
+import { MyApp } from '../../app/app.component';
 
 
 @IonicPage()
@@ -28,6 +29,7 @@ export class AcompanhamentoDetalhesPage {
     public formBuilder: FormBuilder,
     public camera: Camera,
     public alertCtrl: AlertController,
+    public myApp: MyApp,
     public acompanhamentoService: AcompanhamentoService) {
       this.formGroup = this.formBuilder.group({
         id: ['', []],
@@ -93,6 +95,7 @@ export class AcompanhamentoDetalhesPage {
       let origem = this.navParams.get('origem');
       if(origem == 'usuario'){
         this.sendPicture(this.formGroup.value.id);
+        this.myApp.iniciar();
         this.navCtrl.setRoot('AcompanhamentoSolicitadoPage')
       }else{
         this.navCtrl.setRoot("AcompanhamentoPesquisaPage");

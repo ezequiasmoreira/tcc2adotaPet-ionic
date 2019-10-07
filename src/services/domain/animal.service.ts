@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { API_CONFIG, NEW_API_CONFIG } from '../../config/api.config';
 import { AnimalDTO } from "../../models/animal.dto";
-import { Observable } from "rxjs/Rx";
+import { Observable } from "rxjs";
 import { ImageUtilService } from "../image-util.service";
 
 @Injectable()

@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { Observable } from "rxjs/Rx";
+import { Observable } from "rxjs";
 import { API_CONFIG, NEW_API_CONFIG } from "../../config/api.config";
 import { ImageUtilService } from "../image-util.service";
 import { AlertController } from "ionic-angular/components/alert/alert-controller";

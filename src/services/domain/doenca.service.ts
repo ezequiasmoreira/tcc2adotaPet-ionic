@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { API_CONFIG } from "../../config/api.config";
-import { Observable } from "rxjs/Rx";
+import { Observable } from "rxjs";
 import { DoencaDTO } from '../../models/doenca.dto';
 
 @Injectable()

@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { Observable } from "rxjs/Rx";
+import { Observable } from "rxjs";
 import { PessoaDTO } from "../../models/pessoa.dto";
-import { API_CONFIG } from "../../config/api.config";
+import { API_CONFIG, NEW_API_CONFIG } from "../../config/api.config";
 import { StorageService } from "../storage.service";
 import { ImageUtilService } from "../image-util.service";
 
@@ -22,7 +22,7 @@ export class PessoaService {
     }
 
     getImageFromBucket(id : string) : Observable<any> {
-        let url = `${API_CONFIG.imageBaseUrl}/cp${id}.jpg`
+        let url = `${NEW_API_CONFIG.baseUrl}/pessoa/cp${id}.jpg`
         return this.http.get(url, {responseType : 'blob'});
     }
     insert(obj : PessoaDTO) {

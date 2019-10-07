@@ -7,6 +7,7 @@ import { StorageService } from '../services/storage.service';
 import { PessoaService } from '../services/domain/pessoa.service';
 import { PessoaDTO } from '../models/pessoa.dto';
 import { USUARIO_PERFIL } from '../config/perfil';
+import { AcompanhamentoService } from '../services/domain/acompanhamento.service';
 
 @Component({
   templateUrl: 'app.html'
@@ -17,6 +18,7 @@ export class MyApp {
   rootPage: string = 'HomePage';
   perfil :string;
   pessoa: PessoaDTO;
+  quantidadeAcompanhamento;
 
   pages: Array<{title: string, component: string}>;
 
@@ -25,10 +27,12 @@ export class MyApp {
     public splashScreen: SplashScreen,
     public auth: AuthService,
     public storage: StorageService,
-    public pessoaService: PessoaService
+    public pessoaService: PessoaService,
+    public acompanhamentoService: AcompanhamentoService
     ) {
     this.iniciar();
-    this.initializeApp();    
+    this.initializeApp(); 
+       
   }
   
   iniciar() {
@@ -37,19 +41,27 @@ export class MyApp {
       this.pessoaService.findByEmail(localUser.email)
         .subscribe(response => {
           this.pessoa = response;
-          this.isAuthorized(this.pessoa.perfil);
+          if ( this.pessoa.perfil == USUARIO_PERFIL.USUARIO ){ 
+            this.acompanhamentoService.solicitado()      
+            .subscribe(response => {
+              this.isAuthorized(this.pessoa.perfil, response.length>0?response.length+"":"");              
+            },
+            error => {});
+          }else{
+            this.isAuthorized(this.pessoa.perfil, "");
+          }         
         },
         error => { });
     }
   }
-  isAuthorized(perfil :string){
-    if ( perfil == USUARIO_PERFIL.USUARIO ){
+  isAuthorized(perfil :string,quantidadeAcompanhamento){    
+    if ( perfil == USUARIO_PERFIL.USUARIO ){ 
       this.pages = [
         { title: 'Animais', component: 'HomeFiltroPage' },
         { title: 'Minhas adoções', component: 'MyAdocoesPage' },
-        { title: 'Perfil', component: 'ProfilePage' },
+        { title: 'Perfil', component: 'ProfilePage' }, 
         { title: 'Raças', component: 'RacasPage' },
-        { title: 'Solicitação de acompanhamento', component: 'AcompanhamentoSolicitadoPage'},     
+        { title: 'Acompanhamento '+ quantidadeAcompanhamento, component: 'AcompanhamentoSolicitadoPage'},     
         { title: 'Sair', component: ''}
       ];
     }else if(perfil == USUARIO_PERFIL.VOLUNTARIO){
@@ -99,7 +111,7 @@ export class MyApp {
   }
 
   openPage(page : {title:string, component:string}) {
-
+    console.log(page)
     switch (page.title) {
       case 'Sair':
       this.auth.logout();      

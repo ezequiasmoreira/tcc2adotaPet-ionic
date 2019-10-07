@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { StorageService } from '../../services/storage.service';
 import { PessoaDTO } from '../../models/pessoa.dto';
 import { PessoaService } from '../../services/domain/pessoa.service';
-import { API_CONFIG } from '../../config/api.config';
+import { API_CONFIG, NEW_API_CONFIG } from '../../config/api.config';
 import { Camera,CameraOptions } from '@ionic-native/camera';
 import { DomSanitizer } from '@angular/platform-browser';
 
@@ -50,11 +50,7 @@ export class ProfilePage {
     }
   }
   getImageIfExists() {
-    this.pessoaService.getImageFromBucket(this.pessoa.id)
-    .subscribe(response => {
-      this.pessoa.imageUrl = `${API_CONFIG.imageBaseUrl}/cp${this.pessoa.id}.jpg`;
-    },
-    error => {});
+    this.pessoa.imageUrl = `${NEW_API_CONFIG.baseUrl}/pessoa/cp${this.pessoa.id}.jpg`;    
   }
   getCameraPicture() {
 
