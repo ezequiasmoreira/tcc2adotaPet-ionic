@@ -19,8 +19,9 @@ export class MyApp {
   perfil :string;
   pessoa: PessoaDTO;
   quantidadeAcompanhamento;
+  notificacao;
 
-  pages: Array<{title: string, component: string}>;
+  pages: Array<{title: string, component: string, qtde : string}>;
 
   constructor(public platform: Platform,
     public statusBar: StatusBar, 
@@ -32,6 +33,8 @@ export class MyApp {
     ) {
     this.iniciar();
     this.initializeApp(); 
+    
+    
        
   }
   
@@ -48,8 +51,16 @@ export class MyApp {
             },
             error => {});
           }else{
-            this.isAuthorized(this.pessoa.perfil, "");
-          }         
+            if((this.pessoa.perfil == USUARIO_PERFIL.VOLUNTARIO) 
+            || (this.pessoa.perfil == USUARIO_PERFIL.ADMIN) 
+            || (this.pessoa.perfil  == USUARIO_PERFIL.MASTER)){
+              this.acompanhamentoService.atendido()      
+              .subscribe(response => {
+                this.isAuthorized(this.pessoa.perfil, response.length>0?response.length+"":"");              
+              },
+              error => {});              
+            } 
+          }        
         },
         error => { });
     }
@@ -57,49 +68,49 @@ export class MyApp {
   isAuthorized(perfil :string,quantidadeAcompanhamento){    
     if ( perfil == USUARIO_PERFIL.USUARIO ){ 
       this.pages = [
-        { title: 'Animais', component: 'HomeFiltroPage' },
-        { title: 'Minhas adoções', component: 'MyAdocoesPage' },
-        { title: 'Perfil', component: 'ProfilePage' }, 
-        { title: 'Raças', component: 'RacasPage' },
-        { title: 'Acompanhamento '+ quantidadeAcompanhamento, component: 'AcompanhamentoSolicitadoPage'},     
-        { title: 'Sair', component: ''}
+        { title: 'Acompanhamento ', component: 'AcompanhamentoSolicitadoPage',qtde: quantidadeAcompanhamento},     
+        { title: 'Animais', component: 'HomeFiltroPage',qtde: quantidadeAcompanhamento },
+        { title: 'Minhas adoções', component: 'MyAdocoesPage',qtde: quantidadeAcompanhamento },
+        { title: 'Perfil', component: 'ProfilePage',qtde: quantidadeAcompanhamento }, 
+        { title: 'Raças', component: 'RacasPage',qtde: quantidadeAcompanhamento },        
+        { title: 'Sair', component: '',qtde: quantidadeAcompanhamento}
       ];
     }else if(perfil == USUARIO_PERFIL.VOLUNTARIO){
       this.pages = [
-        { title: 'Acompanhamentos', component: 'AcompanhamentoPesquisaPage' },
-        { title: 'Adoções', component: 'AdocoesPainelPage' },
-        { title: 'Animais', component: 'HomeFiltroPage' },
-        { title: 'Cadastros', component: 'CadastrosPage' },
-        { title: 'Perfil', component: 'ProfilePage' },
-        { title: 'Raças', component: 'RacasPage' },        
-        { title: 'Minhas adoções', component: 'MyAdocoesPage' },
-        { title: 'Solicitação de adoções', component: 'AdocoesSolicitacaoPage' },        
-        { title: 'Sair', component: ''}
+        { title: 'Acompanhamento', component: 'AcompanhamentoPesquisaPage',qtde: quantidadeAcompanhamento },
+        { title: 'Adoções', component: 'AdocoesPainelPage',qtde: quantidadeAcompanhamento },
+        { title: 'Animais', component: 'HomeFiltroPage',qtde: quantidadeAcompanhamento },
+        { title: 'Cadastros', component: 'CadastrosPage',qtde: quantidadeAcompanhamento },
+        { title: 'Perfil', component: 'ProfilePage',qtde: quantidadeAcompanhamento },
+        { title: 'Raças', component: 'RacasPage',qtde: quantidadeAcompanhamento },        
+        { title: 'Minhas adoções', component: 'MyAdocoesPage',qtde: quantidadeAcompanhamento },
+        { title: 'Solicitação de adoções', component: 'AdocoesSolicitacaoPage',qtde: quantidadeAcompanhamento },        
+        { title: 'Sair', component: '',qtde: quantidadeAcompanhamento}
       ];    
     }else if(perfil == USUARIO_PERFIL.ADMIN){
       this.pages = [
-        { title: 'Acompanhamentos', component: 'AcompanhamentoPesquisaPage' },
-        { title: 'Adoções', component: 'AdocoesPainelPage' },
-        { title: 'Animais', component: 'HomeFiltroPage' },
-        { title: 'Cadastros', component: 'CadastrosPage' },        
-        { title: 'Perfil', component: 'ProfilePage' },
-        { title: 'Raças', component: 'RacasPage' },        
-        { title: 'Minhas adoções', component: 'MyAdocoesPage' },
-        { title: 'Solicitação de adoções', component: 'AdocoesSolicitacaoPage' },
+        { title: 'Acompanhamento', component: 'AcompanhamentoPesquisaPage',qtde: quantidadeAcompanhamento },
+        { title: 'Adoções', component: 'AdocoesPainelPage',qtde: quantidadeAcompanhamento },
+        { title: 'Animais', component: 'HomeFiltroPage',qtde: quantidadeAcompanhamento },
+        { title: 'Cadastros', component: 'CadastrosPage',qtde: quantidadeAcompanhamento },        
+        { title: 'Perfil', component: 'ProfilePage',qtde: quantidadeAcompanhamento },
+        { title: 'Raças', component: 'RacasPage',qtde: quantidadeAcompanhamento },        
+        { title: 'Minhas adoções', component: 'MyAdocoesPage',qtde: quantidadeAcompanhamento },
+        { title: 'Solicitação de adoções', component: 'AdocoesSolicitacaoPage',qtde: quantidadeAcompanhamento },
         
-        { title: 'Sair', component: ''}
+        { title: 'Sair', component: '',qtde: quantidadeAcompanhamento}
       ];    
     }else if(perfil == USUARIO_PERFIL.MASTER){
       this.pages = [
-        { title: 'Acompanhamentos', component: 'AcompanhamentoPesquisaPage' },
-        { title: 'Adoções', component: 'AdocoesPainelPage' },
-        { title: 'Animais', component: 'HomeFiltroPage' },
-        { title: 'Cadastros', component: 'CadastrosPage' },
-        { title: 'Perfil', component: 'ProfilePage' },
-        { title: 'Raças', component: 'RacasPage' },       
-        { title: 'Minhas adoções', component: 'MyAdocoesPage' },
-        { title: 'Solicitação de adoções', component: 'AdocoesSolicitacaoPage' },       
-        { title: 'Sair', component: ''}
+        { title: 'Acompanhamento', component: 'AcompanhamentoPesquisaPage',qtde: quantidadeAcompanhamento },
+        { title: 'Adoções', component: 'AdocoesPainelPage',qtde: quantidadeAcompanhamento },
+        { title: 'Animais', component: 'HomeFiltroPage',qtde: quantidadeAcompanhamento },
+        { title: 'Cadastros', component: 'CadastrosPage',qtde: quantidadeAcompanhamento },
+        { title: 'Perfil', component: 'ProfilePage',qtde: quantidadeAcompanhamento },
+        { title: 'Raças', component: 'RacasPage',qtde: quantidadeAcompanhamento },       
+        { title: 'Minhas adoções', component: 'MyAdocoesPage',qtde: quantidadeAcompanhamento },
+        { title: 'Solicitação de adoções', component: 'AdocoesSolicitacaoPage',qtde: quantidadeAcompanhamento },       
+        { title: 'Sair', component: '',qtde: quantidadeAcompanhamento}
       ];    
     }
   }
@@ -121,5 +132,14 @@ export class MyApp {
       default:
       this.nav.setRoot(page.component);
     }
+  }
+  isNotification(pagina : string,qtde : string){
+    console.log(pagina);
+    if ((pagina.trim() == "Acompanhamento") && (qtde != "")){
+      return true;
+    }else{
+      return false;
+    }
+
   }
 }

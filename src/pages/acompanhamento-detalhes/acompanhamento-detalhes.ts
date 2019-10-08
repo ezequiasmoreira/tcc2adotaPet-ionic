@@ -94,13 +94,12 @@ export class AcompanhamentoDetalhesPage {
     .subscribe(response => {   
       let origem = this.navParams.get('origem');
       if(origem == 'usuario'){
-        this.sendPicture(this.formGroup.value.id);
-        this.myApp.iniciar();
+        this.sendPicture(this.formGroup.value.id);        
         this.navCtrl.setRoot('AcompanhamentoSolicitadoPage')
       }else{
         this.navCtrl.setRoot("AcompanhamentoPesquisaPage");
       }
-      
+      this.myApp.iniciar();
     },
     error => {
      this.erro(error)

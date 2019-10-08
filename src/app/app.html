@@ -8,10 +8,12 @@
   <ion-content>
     <ion-list>
       <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
-        <span class='paginas'>
-          {{p.title.substr(0,14) =='Acompanhamento'?p.title.substr(15,17) > 0 ? p.title+' - NOVO':p.title:p.title}}</span>
-      </button>
-    </ion-list>
+        <ion-icon [name]="ptitle" [ngStyle]="{'color' : red}"  [id]="p?.title" ></ion-icon>
+          {{p.title}}
+          <ion-badge *ngIf="isNotification(p?.title,p?.qtde)">{{p.qtde}}</ion-badge>
+         
+        </button>
+        </ion-list>
   </ion-content>
 
 </ion-menu>

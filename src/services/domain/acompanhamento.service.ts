@@ -99,6 +99,9 @@ export class AcompanhamentoService {
     solicitado() : Observable<AcompanhamentoDTO[]>  {
       return this.http.get<AcompanhamentoDTO[]>(`${API_CONFIG.baseUrl}/acompanhamentos/solicitado`);
     }
+    atendido() : Observable<AcompanhamentoDTO[]>  {
+      return this.http.get<AcompanhamentoDTO[]>(`${API_CONFIG.baseUrl}/acompanhamentos/atendido`);
+    }
     atualizaAcompanhamento(obj : AcompanhamentoDTO) {
       return this.http.put(
           `${API_CONFIG.baseUrl}/acompanhamentos/${obj.id}`, 
