@@ -89,9 +89,9 @@ export class SignupPage {
       .subscribe(response => {
         this.estados = response;
         if (!this.editar == true){
-          this.formGroup.controls.estadoId.setValue(this.pessoa.estadoId);
+          this.formGroup.controls.estadoId.setValue(this.pessoa != undefined? this.pessoa.estadoId : 1 );
         }
-        this.updateCidades(this.pessoa.cidadeId);
+        this.updateCidades(this.pessoa != undefined?this.pessoa.cidadeId : "0");
         
       },
       error => {});
@@ -107,7 +107,7 @@ export class SignupPage {
     this.cidadeService.findAll(estado_id)
       .subscribe(response => {
         this.cidades = response;
-        if (!this.editar == true){
+        if ((!this.editar == true) && (cidadeId !="0")) {
           this.formGroup.controls.cidadeId.setValue(cidadeId);
         }
       },
@@ -181,10 +181,10 @@ export class SignupPage {
         {
           text: 'Ok',
           handler: () => {
-            if (this.master == USUARIO_PERFIL.MASTER){
+            if ((this.master == USUARIO_PERFIL.MASTER) || (this.master == USUARIO_PERFIL.ADMIN)){
               this.navCtrl.setRoot("SignupPage");
             }else{
-              this.navCtrl.pop();
+              this.navCtrl.setRoot("HomePage");
             }
             
           }

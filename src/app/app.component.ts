@@ -134,7 +134,6 @@ export class MyApp {
     }
   }
   isNotification(pagina : string,qtde : string){
-    console.log(pagina);
     if ((pagina.trim() == "Acompanhamento") && (qtde != "")){
       return true;
     }else{
