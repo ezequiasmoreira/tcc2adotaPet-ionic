@@ -15,7 +15,6 @@ export class RacaService {
     }
 
     insert(obj : RacaDTO) {
-        console.log(obj);
         return this.http.post(
             `${API_CONFIG.baseUrl}/racas`, 
             obj,

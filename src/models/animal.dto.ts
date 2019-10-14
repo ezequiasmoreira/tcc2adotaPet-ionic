@@ -1,3 +1,5 @@
+import { RacaDTO } from "./raca.dto";
+
 export interface AnimalDTO {
     id : string;
     codigo: string;
@@ -12,5 +14,6 @@ export interface AnimalDTO {
     racaId :string;
     cidade : string;
     imageUrl? : string;
+    raca? :RacaDTO;
     
 }

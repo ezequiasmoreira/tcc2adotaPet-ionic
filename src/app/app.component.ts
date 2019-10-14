@@ -51,16 +51,12 @@ export class MyApp {
             },
             error => {});
           }else{
-            if((this.pessoa.perfil == USUARIO_PERFIL.VOLUNTARIO) 
-            || (this.pessoa.perfil == USUARIO_PERFIL.ADMIN) 
-            || (this.pessoa.perfil  == USUARIO_PERFIL.MASTER)){
-              this.acompanhamentoService.atendido()      
-              .subscribe(response => {
-                this.isAuthorized(this.pessoa.perfil, response.length>0?response.length+"":"");              
-              },
-              error => {});              
-            } 
-          }        
+            this.acompanhamentoService.atendido()      
+            .subscribe(response => {
+              this.isAuthorized(this.pessoa.perfil, response.length>0?response.length+"":"");              
+            },
+            error => {});              
+          }                  
         },
         error => { });
     }

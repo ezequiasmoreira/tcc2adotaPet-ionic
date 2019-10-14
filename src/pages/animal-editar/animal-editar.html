@@ -49,7 +49,7 @@
   <ion-item>
     <ion-label stacked>Raça</ion-label>
     <ion-select name="raca" [(ngModel)]="racaId">
-      <ion-option *ngFor="let raca of racas; first as a" [value]="raca.id">{{raca.nome}}</ion-option>
+      <ion-option *ngFor="let raca of racas; first as a" [value]="raca.id" [selected]="raca.id==racaIds">{{raca.descricao}}</ion-option>
     </ion-select>
   </ion-item>
 

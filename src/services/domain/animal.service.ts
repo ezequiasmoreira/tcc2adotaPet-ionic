@@ -9,9 +9,9 @@ import { ImageUtilService } from "../image-util.service";
 export class AnimalService {
 
     constructor(public http: HttpClient, public imageUtilService: ImageUtilService) {
-    }
-    findById(produto_id : string) {
-        return this.http.get<AnimalDTO>(`${API_CONFIG.baseUrl}/animais/${produto_id}`);
+    } 
+    findById(animal_id : string) {
+        return this.http.get<AnimalDTO>(`${API_CONFIG.baseUrl}/animais/${animal_id}`);
     }
 
     findAll(ong_id : string) : Observable<AnimalDTO[]>  {
@@ -37,10 +37,10 @@ export class AnimalService {
         ); 
     }
 
-    editarAnimal(obj : AnimalDTO) {
+    editarAnimal(obj) {
         console.log(obj);
         return this.http.put(
-            `${API_CONFIG.baseUrl}/animais`, 
+            `${API_CONFIG.baseUrl}/animais/${obj.id}`, 
             obj,
             { 
                 observe: 'response', 

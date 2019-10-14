@@ -43,6 +43,7 @@ export class AnimalEditarPage {
   ionViewDidLoad() {
     this.animalService.findById(this.animalId)
     .subscribe(response => {
+      console.log(response);
       this.nome = response.nome;
       this.codigo = response.codigo;
       this.genero = response.genero;
@@ -53,7 +54,7 @@ export class AnimalEditarPage {
       this.ongId = response.ongId;
       this.status = response.status;
       this.cidade = response.cidade;
-      this.racaId = response.racaId;
+      this.racaId = response.raca.id;
       this.imageUrl = response.imageUrl;
     },
     error => {});
@@ -61,29 +62,24 @@ export class AnimalEditarPage {
     this.racaService.findAll()
     .subscribe(response => {
       this.racas = response;
-      console.log(this.racas);
     },
       error => { });
   }
 
   editarAnimal(nome, porte, genero, vacinado,vermifugado, castrado, racaId) {
     console.log(nome);
-    let animal : AnimalDTO = {
+    let animal = {
       id : this.animalId,
       nome : nome,
       codigo : this.codigo,
       genero : genero,
       porte : porte,
-      vacinado : vacinado,
       vermifugado : vermifugado,
       castrado : castrado,
-      ongId :	this.ongId,
       status : status,
-      racaId : racaId,
-      cidade : this.cidade,
-      imageUrl: this.imageUrl
-      
+      racaId : racaId      
     }
+    console.log(animal);
     this.animalService.editarAnimal(animal)
       .subscribe(response => {
         //this.showInsertOk();
