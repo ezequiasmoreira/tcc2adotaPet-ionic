@@ -4,6 +4,8 @@ import { AdocaoService } from '../../services/domain/adocao.service';
 import { AdocaolDTO } from '../../models/adocao.dto';
 import { API_CONFIG } from '../../config/api.config';
 import { ADOCAO_STATUS } from '../../models/adocao-status';
+import { MyApp } from '../../app/app.component';
+import { AlertController } from 'ionic-angular/components/alert/alert-controller';
 
 @IonicPage()
 @Component({
@@ -18,6 +20,8 @@ export class AdocaoDetalhesPage {
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
+    public myApp: MyApp,
+    public alertCtrl: AlertController,
     public adocaoService: AdocaoService) {
   }
 
@@ -48,18 +52,38 @@ export class AdocaoDetalhesPage {
   mostrarAnimal(animal_id : string){
     this.navCtrl.push('AnimalDetailPage',{animal_id : animal_id,habilita : "false"});    
   }
-  finalizar(status : string){     
+  finalizar(status : string){ 
+    if (status == undefined){
+      this.exibeAlert("Campo não Preenchido","Status obrigatório");
+      return;
+    }    
     let adocao = {
       "id" : this.item.id,
       "status" : status
     }
     this.adocaoService.atualizaAdocao(adocao)
-    .subscribe(response => {       
+    .subscribe(response => {
+      this.myApp.iniciar();       
       this.navCtrl.setRoot("AdocoesPainelPage");
     },
     error => {
       console.log(error);
     });
+    
+  }
+
+  exibeAlert(titulo,mensagem) {
+    let alert = this.alertCtrl.create({
+        title: titulo,
+        message: mensagem,
+        enableBackdropDismiss: false,
+        buttons: [
+            {
+                text: 'Ok'
+            }
+        ]
+    });
+    alert.present();  
   }
 
 }

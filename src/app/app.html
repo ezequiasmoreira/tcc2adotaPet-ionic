@@ -9,7 +9,7 @@
     <ion-list>
       <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">       
         {{p.title}}
-        <ion-badge *ngIf="isNotification(p?.title,p?.qtde)" color="danger" slot="end">{{p.qtde}}</ion-badge>
+        <ion-badge *ngIf="isNotification(p?.title,p?.qtde,p?.qtdeAdocoes)" color="danger" slot="end">{{(p.title.trim() == 'Acompanhamento') ? p.qtde : p.qtdeAdocoes}}</ion-badge>
       </button>
     </ion-list>
   </ion-content>
