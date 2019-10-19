@@ -40,7 +40,6 @@ export class HomeFiltroPage {
       this.estadoService.findAll()
       .subscribe(response => {
         this.estados = response;
-        this.updateCidades("1");
       },
       error => {});
   }

@@ -55,10 +55,8 @@ export class MyApp {
           }else{
             this.acompanhamentoService.atendido()      
             .subscribe(response => {
-              //this.isAuthorized(this.pessoa.perfil, response.length>0?response.length+"":"","");
               this.adocaoService.getAdocoesPorOng()      
               .subscribe(adocao => {
-                console.log(adocao.length)
                 this.isAuthorized(this.pessoa.perfil,(response.length>0?response.length+"":""),adocao.length>0?adocao.length+"":"");              
               },
             error => {});                
@@ -139,7 +137,6 @@ export class MyApp {
     }
   }
   isNotification(pagina : string,qtdeAcompanhamento : string, qtdeAdocoes : string ){
-    console.log(qtdeAcompanhamento)
     if (((pagina.trim() == "Acompanhamento") && (qtdeAcompanhamento != "")) 
     || ((pagina.trim() == "Solicitação de adoções") && (qtdeAdocoes != ""))){
       return true;
