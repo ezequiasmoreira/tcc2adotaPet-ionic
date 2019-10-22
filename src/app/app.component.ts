@@ -110,10 +110,10 @@ export class MyApp {
         { title: 'Animais', component: 'HomeFiltroPage',qtde: "" ,qtdeAdocoes:""}, 
         { title: 'Cadastros', component: 'CadastrosPage',qtde: "" ,qtdeAdocoes:""}, 
         { title: 'Perfil', component: 'ProfilePage',qtde: "",qtdeAdocoes:""}, 
-        { title: 'Raças', component: 'RacasPage',qtde: "" ,qtdeAdocoes:""}, ,       
+        { title: 'Raças', component: 'RacasPage',qtde: "" ,qtdeAdocoes:""},       
         { title: 'Minhas adoções', component: 'MyAdocoesPage',qtde: "",qtdeAdocoes:""}, 
         { title: 'Solicitação de adoções', component: 'AdocoesSolicitacaoPage',qtde: "" ,qtdeAdocoes:qtdeAdocoes},       
-        { title: 'Sair', component: '',qtde: "",qtdeAdocoes:""}, 
+        { title: 'Sair', component: '',qtde: "",qtdeAdocoes:""}
       ];    
     }
   }
