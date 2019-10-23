@@ -10,8 +10,6 @@ import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
-import { File } from '@ionic-native/file/ngx';
-import { FileOpener } from '@ionic-native/file-opener/ngx';
 import { PessoaService } from '../../services/domain/pessoa.service';
 
 @IonicPage()
@@ -32,9 +30,7 @@ export class AdocoesPage {
      public adocaoService: AdocaoService,
      private storage: StorageService,
      private pessoaService: PessoaService,
-     private plt: Platform, 
-     private file: File, 
-     private fileOpener: FileOpener) {
+     private plt: Platform) {
        
   }
   

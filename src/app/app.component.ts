@@ -55,6 +55,7 @@ export class MyApp {
           }else{
             this.acompanhamentoService.atendido()      
             .subscribe(response => {
+              
               this.adocaoService.getAdocoesPorOng()      
               .subscribe(adocao => {
                 this.isAuthorized(this.pessoa.perfil,(response.length>0?response.length+"":""),adocao.length>0?adocao.length+"":"");              
@@ -69,8 +70,9 @@ export class MyApp {
     }
   }
   isAuthorized(perfil :string,quantidadeAcompanhamento,qtdeAdocoes){    
+    let paginas: Array<{title: string, component: string, qtde : string,qtdeAdocoes : string}>;
     if ( perfil == USUARIO_PERFIL.USUARIO ){ 
-      this.pages = [
+      paginas = [
         { title: 'Acompanhamento ', component: 'AcompanhamentoSolicitadoPage',qtde: quantidadeAcompanhamento,qtdeAdocoes:""},     
         { title: 'Animais', component: 'HomeFiltroPage',qtde: "",qtdeAdocoes:""}, 
         { title: 'Minhas adoções', component: 'MyAdocoesPage',qtde: "",qtdeAdocoes:""}, 
@@ -79,7 +81,7 @@ export class MyApp {
         { title: 'Sair', component: '',qtde: "",qtdeAdocoes:""}
       ];
     }else if(perfil == USUARIO_PERFIL.VOLUNTARIO){
-      this.pages = [
+      paginas = [
         { title: 'Acompanhamento', component: 'AcompanhamentoPesquisaPage',qtde: quantidadeAcompanhamento ,qtdeAdocoes:""}, 
         { title: 'Adoções', component: 'AdocoesPainelPage',qtde: "",qtdeAdocoes:""}, 
         { title: 'Animais', component: 'HomeFiltroPage',qtde: "",qtdeAdocoes:""}, 
@@ -91,8 +93,7 @@ export class MyApp {
         { title: 'Sair', component: '',qtde: "",qtdeAdocoes:""}
       ];    
     }else if(perfil == USUARIO_PERFIL.ADMIN){
-      console.log(qtdeAdocoes);
-      this.pages = [
+      paginas = [
         { title: 'Acompanhamento', component: 'AcompanhamentoPesquisaPage',qtde: quantidadeAcompanhamento ,qtdeAdocoes:""}, 
         { title: 'Adoções', component: 'AdocoesPainelPage',qtde: "" ,qtdeAdocoes:""}, 
         { title: 'Animais', component: 'HomeFiltroPage',qtde: "" ,qtdeAdocoes:""}, 
@@ -104,7 +105,7 @@ export class MyApp {
         { title: 'Sair', component: '',qtde: "",qtdeAdocoes:""}
       ];    
     }else if(perfil == USUARIO_PERFIL.MASTER){
-      this.pages = [
+      paginas = [
         { title: 'Acompanhamento', component: 'AcompanhamentoPesquisaPage',qtde: quantidadeAcompanhamento ,qtdeAdocoes:""}, 
         { title: 'Adoções', component: 'AdocoesPainelPage',qtde: "" ,qtdeAdocoes:""}, 
         { title: 'Animais', component: 'HomeFiltroPage',qtde: "" ,qtdeAdocoes:""}, 
@@ -116,6 +117,9 @@ export class MyApp {
         { title: 'Sair', component: '',qtde: "",qtdeAdocoes:""}
       ];    
     }
+    this.pages = paginas.filter(function (el) {
+      return el != null;
+    });
   }
   initializeApp() {
     this.platform.ready().then(() => {
@@ -125,7 +129,6 @@ export class MyApp {
   }
 
   openPage(page : {title:string, component:string}) {
-   
     switch (page.title) {
       case 'Sair':
       this.auth.logout();      
@@ -136,13 +139,16 @@ export class MyApp {
       this.nav.setRoot(page.component);
     }
   }
-  isNotification(pagina : string,qtdeAcompanhamento : string, qtdeAdocoes : string ){
-    if (((pagina.trim() == "Acompanhamento") && (qtdeAcompanhamento != "")) 
-    || ((pagina.trim() == "Solicitação de adoções") && (qtdeAdocoes != ""))){
-      return true;
-    }else{
-      return false;
-    }
 
+  isNotification(pagina : string,qtdeAcompanhamento : string, qtdeAdocoes : string ){
+    if(pagina != null){
+      if (((pagina.trim() == "Acompanhamento") && (qtdeAcompanhamento != "")) 
+      || ((pagina.trim() == "Solicitação de adoções") && (qtdeAdocoes != ""))){
+        return true;
+      }else{
+        return false;
+      }
+    }
+    return false;
   }
 }

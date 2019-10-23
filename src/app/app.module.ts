@@ -26,8 +26,6 @@ import { CidadeService } from '../services/domain/cidade.service';
 import { OngService } from '../services/domain/ong.service';
 import { Camera } from '@ionic-native/camera';
 
-import { File } from '@ionic-native/file/ngx';
-import { FileOpener } from '@ionic-native/file-opener/ngx';
 
 @NgModule({
   declarations: [
@@ -64,9 +62,7 @@ import { FileOpener } from '@ionic-native/file-opener/ngx';
     EstadoService,
     CidadeService,
     OngService,
-    Camera,
-    File,
-    FileOpener
+    Camera
   ]
 })
 export class AppModule {}
