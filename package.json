@@ -42,6 +42,7 @@
         "cordova-plugin-file-opener2": "^2.2.1",
         "cordova-plugin-file-transfer": "^1.7.1",
         "cordova-plugin-ionic-webview": "^1.1.11",
+        "cordova-plugin-media-capture": "^1.4.3",
         "cordova-plugin-splashscreen": "^4.0.3",
         "cordova-plugin-statusbar": "^2.4.3",
         "cordova-plugin-whitelist": "^1.3.1",
@@ -78,7 +79,8 @@
             "cordova-plugin-document-viewer": {},
             "cordova-plugin-code-push": {},
             "cordova-plugin-file": {},
-            "cordova-plugin-zip": {}
+            "cordova-plugin-zip": {},
+            "cordova-plugin-media-capture": {}
         },
         "platforms": [
             "android",

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AdocaoService } from '../../services/domain/adocao.service';
 import { AdocaolDTO } from '../../models/adocao.dto';
-import { API_CONFIG } from '../../config/api.config';
+import { API_CONFIG, NEW_API_CONFIG } from '../../config/api.config';
 import { ADOCAO_STATUS } from '../../models/adocao-status';
 import { MyApp } from '../../app/app.component';
 import { AlertController } from 'ionic-angular/components/alert/alert-controller';
@@ -30,7 +30,7 @@ export class AdocaoDetalhesPage {
     this.adocaoService.getAdocaoById(adocao_id)
       .subscribe(response => {
         this.item = response;
-        this.caminho = API_CONFIG.imageBaseUrl +"/animais/an"; 
+        this.caminho = NEW_API_CONFIG.baseUrl +"/animal/an"; 
       },
       error => {});
   }
@@ -67,7 +67,7 @@ export class AdocaoDetalhesPage {
       this.navCtrl.setRoot("AdocoesPainelPage");
     },
     error => {
-      console.log(error);
+      this.exibeAlert("Não permitido",error.message);
     });
     
   }

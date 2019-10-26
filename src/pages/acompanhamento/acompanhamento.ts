@@ -39,7 +39,7 @@ export class AcompanhamentoPage {
     let acompanhamento : AcompanhamentoDTO = {
       descricao : descricao,
       observacao : observacao,
-      dataAgendado : dataAgendado,
+      dataAgendado : dataAgendado != undefined ? this.converterDataBrasil(dataAgendado.replace(/-/g,'/')) : undefined,
       status : status,
       situacao : situacao,
       animal : animalId,
@@ -129,5 +129,12 @@ export class AcompanhamentoPage {
   }
   cancel() {
     this.picture = null;
+  }
+  converterDataBrasil(data : string){  
+    let split = data.split('/');
+    let ano = split[0];
+    let mes = split[1];
+    let dia = split[2];
+    return dia + '/' + (mes) + '/' + ano;
   }
 }

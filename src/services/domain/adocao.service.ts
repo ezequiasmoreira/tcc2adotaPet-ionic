@@ -36,7 +36,7 @@ export class AdocaoService {
         return this.http.get<AdocaolDTO>(`${API_CONFIG.baseUrl}/adocoes/${adocao_id}`);
     }
     atualizaAdocao(adocao){
-        console.log(adocao.status);
+        console.log(adocao);
         return this.http.put(
             `${API_CONFIG.baseUrl}/adocoes/${adocao.id}`  ,
             adocao,

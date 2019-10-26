@@ -25,7 +25,6 @@ export class AnimaisPage {
     let raca_id = this.navParams.get('raca_id');
     let parametros = this.navParams.get('parametros');
     let origem = this.navParams.get('origem');
-    console.log(parametros + origem);
     if (origem == undefined) {
       this.animalService.findByRaca(raca_id)
       .subscribe(response => {

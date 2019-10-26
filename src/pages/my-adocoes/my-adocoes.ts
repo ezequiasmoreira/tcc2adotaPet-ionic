@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AdocaoService } from '../../services/domain/adocao.service';
 import { AdocaolDTO } from '../../models/adocao.dto';
 import { AnimalService } from '../../services/domain/animal.service';
-import { API_CONFIG } from '../../config/api.config';
+import { API_CONFIG, NEW_API_CONFIG } from '../../config/api.config';
 import { ADOCAO_STATUS } from '../../models/adocao-status';
 
 @IonicPage()
@@ -26,7 +26,7 @@ export class MyAdocoesPage {
    this.adocaoService.getAdocoesUser()
     .subscribe(response => {
       this.items = response;  
-      this.caminho = API_CONFIG.imageBaseUrl +"/animais/an";    
+      this.caminho = NEW_API_CONFIG.baseUrl +"/animal/an";    
     },
     error => {});
   }
