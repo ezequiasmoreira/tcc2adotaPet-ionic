@@ -30,7 +30,7 @@ export class AcompanhamentoListagemPage {
   loadImageUrls() {
     for (var i=0; i<this.items.length; i++) {
       let item = this.items[i];
-      if(item.status == '4' && item.situacao == '6'){
+      if(item.situacao == '7'){
         item.imageUrl = `${NEW_API_CONFIG.baseUrl}/acompanhamento/no-image.jpg`;
       }else{
         item.imageUrl = `${NEW_API_CONFIG.baseUrl}/acompanhamento/acomp${item.id}.jpg`;  
