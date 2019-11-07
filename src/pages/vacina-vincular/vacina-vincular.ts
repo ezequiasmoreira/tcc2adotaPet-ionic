@@ -61,7 +61,7 @@ export class VacinaVincularPage {
         {
           text: 'Ok',
           handler: () => {
-            this.navCtrl.push('AnimalDetailPage', {animal_id: this.animalId});
+            this.navCtrl.setRoot('AnimalDetailPage', {animal_id: this.animalId});
           }
         }
       ]

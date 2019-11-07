@@ -27,6 +27,9 @@ export class ErrorInterceptor implements HttpInterceptor {
             console.log(errorObj);
 
             switch(errorObj.status) {
+                case 400:
+                this.handle400(errorObj);
+                break;
                 case 401:
                 this.handle401();
                 break;
@@ -49,7 +52,19 @@ export class ErrorInterceptor implements HttpInterceptor {
     handle403(errorObj) {
         //this.storage.setLocalUser(null);
     }
-
+    handle400(errorObj) {
+        let alert = this.alertCtrl.create({
+            title: 'Sem imagem',
+            message:  this.listErrors(errorObj.errors),
+            enableBackdropDismiss: false,
+            buttons: [
+                {
+                    text: 'Ok'
+                }
+            ]
+        });
+        alert.present();
+    }
     handle401() {
         let alert = this.alertCtrl.create({
             title: 'Falha de autenticação',

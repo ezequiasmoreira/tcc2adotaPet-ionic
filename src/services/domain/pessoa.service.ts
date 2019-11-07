@@ -25,6 +25,10 @@ export class PessoaService {
         let url = `${NEW_API_CONFIG.baseUrl}/pessoa/cp${id}.jpg`
         return this.http.get(url, {responseType : 'blob'});
     }
+
+    validarImagem(){
+        return this.http.get(`${API_CONFIG.baseUrl}/pessoas/validarImagem`);
+    }
     insert(obj : PessoaDTO) {
         return this.http.post(
             `${API_CONFIG.baseUrl}/pessoas`, 

@@ -50,7 +50,13 @@ export class ProfilePage {
     }
   }
   getImageIfExists() {
-    this.pessoa.imageUrl = `${NEW_API_CONFIG.baseUrl}/pessoa/cp${this.pessoa.id}.jpg`;    
+    this.pessoaService.validarImagem()
+    .subscribe(response => {
+      this.pessoa.imageUrl = `${NEW_API_CONFIG.baseUrl}/pessoa/cp${this.pessoa.id}.jpg`;    
+    },
+    error => {
+      this.pessoa.imageUrl = `${NEW_API_CONFIG.baseUrl}/pessoa/no-image.jpg`;
+    });  
   }
   getCameraPicture() {
 
@@ -95,7 +101,7 @@ export class ProfilePage {
       .subscribe(response => {
         this.picture = null;
         this.loadData();
-        this.getImageIfExists();
+        this.navCtrl.setRoot('ProfilePage'); 
       },
       error => {
       });
